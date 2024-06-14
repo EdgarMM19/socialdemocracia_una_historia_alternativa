@@ -1,0 +1,66 @@
+title: Alianzas
+new-page: true
+view-if: year <= 1932 and inter_party_relationships_timer <= 0
+tags: party_affairs
+is-card: true
+on-arrival: month_actions += 1; inter_party_relationships_timer = 6;
+card-image: img/weimar_coalition_2.jpg
+max-visits: 8
+
+= Alianzas
+
+Sin mayoría absoluta, el PSOE no puede gobernar en solitario. La República fue declarada gracias a una Conjunción Republicano-Socialista que nos aliaba con los republicanos de izquierdas como Manuel Azaña y los republicanos de centro como Alejandro Lerroux. ¿Deberíamos de seguir con ese rumbo, o convendría acercarnos a otras formaciones?
+
+- @rdi: Acercar posiciones con los republicanos de izquierdas
+- @rdc: Acercar posiciones con los republicanos de centro
+- @nacionalistas: Acercar posiciones con los nacionalistas periféricos (ERC y PNB)
+- @pce: Acercar posiciones con los comunistas (PCE)
+- @cnt: Acercar posiciones con los anarquistas (CNT-FAI)
+- @psoe_solo: No acercaremos posiciones con nadie.
+- @easy_discard
+
+@rdi
+subtitle: -1 recursos
+choose-if: resources >= 1
+unavailable-subtitle: Recursos insuficientes.
+on-arrival: resources -= 1; irl_relacion += 15;
+
+Hemos intentado acercar posiciones con Manuel Azaña y su espacio político.
+
+@rdc
+subtitle: -1 recursos
+choose-if: resources >= 1
+unavailable-subtitle: Recursos insuficientes.
+on-arrival: resources -= 1; prr_relacion += 10;
+
+Hemos intentado acercar posiciones con Alejandro Lerroux y su espacio político.
+
+@nacionalistas
+subtitle: -1 recursos
+choose-if: resources >= 1
+unavailable-subtitle: Recursos insuficientes.
+on-arrival: resources -= 1; regionales_relacion += 15;
+
+Hemos intentado acercar posiciones con los nacionalistas catalanes y vascos.
+
+@pce
+subtitle: -1 recursos
+choose-if: resources >= 1
+unavailable-subtitle: Recursos insuficientes.
+on-arrival: resources -= 1; pce_relacion += 15;
+
+Hemos intentado acercar posiciones con el Partido Comunista. A pesar de su poca influencia electoral, quizás podríamos fusionar nuestras juventudes...
+
+@cnt
+subtitle: -1 recursos
+choose-if: resources >= 1
+unavailable-subtitle: Recursos insuficientes.
+on-arrival: resources -= 1; cnt_relacion += 10;
+
+Hemos intentado acercar posiciones con los anarquistas. Pese a la hostilidad de la CNT-FAI hacia la política parlamentaria, quizás podremos convencer a algunos de sus miembros y conseguir sus votos.
+
+@psoe_solo
+
+Ahora no es el momento para tejer alianzas.
+
+- @return: Siguiente
