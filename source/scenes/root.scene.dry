@@ -6,7 +6,7 @@ go-to: post_event if started = 1; start_menu if started = 0
 new-page: true
 go-to: start_menu_2
 
-= Social Democracia: Una Historia Alternativa
+= La 2a República: Una Historia Alternativa
 
 @start_menu_2
 
@@ -357,9 +357,9 @@ Esta es una partida de historia alternativa. Aunque la exactitud histórica es u
 
 Para más información sobre la política y el gobierno de la República Española, consulta la página de "Biblioteca" en la esquina superior izquierda. Si es la primera vez que juegas, se recomienda encarecidamente que leas al menos parte de esta información.
 
-- @1928_easy: Empezar (fácil)
+- @1928_easy: Empezar (fácil TODO)
 - @1928_main: Empezar (medio)
-- @1928_hard: Empezar (difícil)
+- @1928_hard: Empezar (difícil TODO)
 
 @1928_easy
 on-arrival: difficulty = -1; resources = 4; dues = 3; rb_strength = 2500; kpd_relation = 29; z_relation = 54; dvp_relation = 49;

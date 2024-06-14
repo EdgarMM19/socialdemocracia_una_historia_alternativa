@@ -23,6 +23,7 @@ Q.prr_p = Q.prr_votes;
 Q.irl_p = Q.irl_votes;
 Q.anarquistas_p = Q.anarquistas_votes;
 
+// TODO
 Q.largest_party = 'CEDA';
 if (Q.psoe_p >= Q.pce_p && Q.psoe_p >= Q.ceda_p) {
     Q.largest_party = 'PSOE';
