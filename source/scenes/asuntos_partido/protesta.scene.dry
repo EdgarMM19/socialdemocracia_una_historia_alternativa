@@ -83,14 +83,14 @@ La defensa de la democracia da alas a la facción más reformista del partido y 
 
 
 @feminismo1
-view-if: sufragio_femenino == 0;
+view-if: sufragio_femenino == 0
 on-arrival: mujeres_psoe += 4*(1-disidencia);
 
 Las mujeres merecen el derecho a voto, y el PSOE luchará para lograr el sufragio femenino.
 
 
 @feminismo2
-view-if: sufragio_femenino == 1;
+view-if: sufragio_femenino == 1
 on-arrival: mujeres_psoe += 4*(1-disidencia);
 
 Ahora que las mujeres han logrado el sufragio, es imprescindible seguir luchando por la igualdad en otras áreas.

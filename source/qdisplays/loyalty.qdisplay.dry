@@ -1,10 +1,10 @@
 
 # loyalty for police + reichswehr
 
-(0..0.19) very disloyal
-(0.19..0.31) generally disloyal
-(0.31..0.41) mostly disloyal
-(0.41..0.54) divided
-(0.54..0.71) mostly loyal
-(0.71..99) generally loyal
-(99..) completely loyal
+(0..0.19) completamente desleales
+(0.19..0.31) muy desleales
+(0.31..0.41) mayoritariamente desleales
+(0.41..0.54) divididos
+(0.54..0.71) mayoritariamente leales
+(0.71..99) muy leales
+(99..) completamente leales
