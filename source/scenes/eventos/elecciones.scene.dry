@@ -144,7 +144,7 @@ view-if: partido_jefe_gobierno != "psoe"
 on-arrival: leverage -= 15; partido_jefe_gobierno = "psoe"; jefe_gobierno = "TODO"
 go-to: ministries
 
-NOSE será presidente del gobierno.
+Julián Besteiro será Presidente del Gobierno.
 
 
 @estadogob
@@ -157,7 +157,7 @@ view-if: partido_ministro_estado != "psoe"
 on-arrival: leverage -= 5; partido_ministro_estado = "psoe"; ministro_estado = "TODO"
 go-to: ministries
 
-NOSE será ministro de estado.
+Julio Álvarez del Vayo será Ministro de Estado.
 
 @gobgob
 title: Ministro de gobernación
@@ -169,7 +169,7 @@ view-if: partido_ministro_gobernacion != "psoe"
 on-arrival: leverage -= 5; partido_ministro_gobernacion = "psoe"; ministro_gobernacion = "TODO"
 go-to: ministries
 
-NOSE será ministro de gobernación.
+Ángel Galarza será Ministro de Gobernación.
 
 
 @jusgob
@@ -182,11 +182,11 @@ view-if: partido_ministro_justicia != "psoe"
 on-arrival: leverage -= 5; partido_ministro_justicia = "psoe"; ministro_justicia = "TODO"
 go-to: ministries
 
-NOSE será ministro de justicia.
+Álvaro de Albornoz será Ministro de Justicia.
 
 
 @trabgob
-title: Ministro de trabajo
+title: Ministro de Trabajo
 subtitle: Se espera que asumamos ese rol.
 unavailable-subtitle: No tenemos suficiente fuerza negociadora.
 tags: mins
@@ -195,7 +195,7 @@ view-if: partido_ministro_trabajo != "psoe"
 on-arrival: leverage -= 5; partido_ministro_trabajo = "psoe"; ministro_trabajo = "TODO"
 go-to: ministries
 
-NOSE será ministro de trabajo.
+Francisco Largo Caballero será Ministro de Trabajo.
 
 
 @guerragob
@@ -208,7 +208,7 @@ view-if: partido_ministro_guerra != "psoe"
 on-arrival: leverage -= 10; partido_ministro_guerra = "psoe"; ministro_guerra = "TODO"
 go-to: ministries
 
-NOSE será ministro de guerra.
+Carlos Masquelet será Ministro de Guerra.
 
 
 @econgob
@@ -234,7 +234,7 @@ view-if: partido_ministro_agricultura != "psoe"
 on-arrival: leverage -= 5; partido_ministro_agricultura = "psoe"; ministro_agricultura = "TODO"
 go-to: ministries
 
-NOSE será ministro de agricultura.
+Marcelino Domingo será Ministro de Agricultura.
 
 
 @educagob
@@ -247,7 +247,7 @@ view-if: partido_ministro_educacion != "psoe"
 on-arrival: leverage -= 5; partido_ministro_educacion = "psoe"; ministro_educacion = "TODO"
 go-to: ministries
 
-NOSE será ministro de educación.
+Fernando de los Ríos será Ministro de Educación.
 
 @no_more
 title: Ya tenemos suficientes.
