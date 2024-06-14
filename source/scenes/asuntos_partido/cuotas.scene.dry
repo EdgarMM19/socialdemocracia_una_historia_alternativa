@@ -16,19 +16,19 @@ tags: asuntos_partido
 - @bajar: Bajar la cuota.
 
 @aumentar
-subtitle: ingresaremos [+ dues + 1 +] recursos. [? if dues >= 4 : La cuota ya es bastante alta; subirla puede ahuyentar a algunos miembros. ?]
+subtitle: Ingresaremos [+ dues + 1 +] recursos. [? if dues >= 4 : La cuota ya es bastante alta; subirla puede ahuyentar a algunos miembros. ?]
 on-arrival: dues += 1; resources += dues; trabajadores_psoe -= 3; trabajadores_psoe -= 3*dues if dues >= 5;
 
 Algunos miembros deciden abandonar el partido, pero ahora contamos con más recursos.
 
 @mantener
-subtitle: ingresaremos [+ dues +] recursos.
+subtitle: Ingresaremos [+ dues +] recursos.
 on-arrival: resources += dues;
 
 Hemos decidido mantener la cuota.
 
 @bajar
-subtitle: ingresaremos [+ dues - 1 +] recursos.
+subtitle: Ingresaremos [+ dues - 1 +] recursos.
 choose-if: dues > 1
 on-arrival: dues -= 1; resources += dues; disidencia_centristas -= 8; disidencia_sindicalistas -= 8; trabajadores_psoe += 1;
 

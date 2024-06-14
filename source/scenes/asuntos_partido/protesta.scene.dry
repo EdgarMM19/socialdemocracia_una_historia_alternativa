@@ -1,0 +1,93 @@
+title: Protesta
+new-page: true
+is-card: true
+tags: asuntos_partido
+view-if: rally_timer <= 0
+on-arrival: month_actions += 1; rally_timer = 6
+card-image: img/protest.jpg
+max-visits: 10
+go-to: main_rally; falange if jons_strength > 180
+
+@falange
+
+La Falange, el partido fascista de Primo de Rivera, está intentando impedir nuestra manifestación.
+
+- @fuerzas_orden: Llamar a las fuerzas del orden.
+- @milicia_convocar: Convocar a nuestras propias milicias.
+- @cancelar: Cancelar la manifestación.
+
+@fuerzas_orden
+view-if: spd_prussia == 1
+on-arrival: police_protect_success = (asalto_loyalty * asalto_militancy * asalto_strength) + (gcivil_loyalty * gcivil_militancy * gcivil_strength) - (jons_militancy * jons_strength);
+go-to: police_protect_win if police_protect_success >= 0; police_protect_lose if police_protect_success < 0
+
+@police_protect_win
+go-to: main_rally
+
+La Guardia Civil y la Guardia de Asalto nos han protegido de las camisas azules fascistas. Podemos manifestarnos en paz.
+
+@police_protect_lose
+on-arrival: trabajadores_falange += 3
+
+Desgraciadamente, las fuerzas del orden no han podido (o no han querido) defendernos. La Falange ha demostrado su fuerza ante los ciudadanos. Algunos han decidido unirse al partido fascista.
+
+@milicia_convocar
+on-arrival: jse_success = jse_strength*jse_militancy - jons_strength*jons_militancy;
+go-to: jse_protect_win if jse_success >= 0; jse_protect_lose if jse_success < 0
+
+@jse_protect_win
+go-to: main_rally
+
+Nuestras milicias nos han protegido de las camisas azules fascistas. Podemos manifestarnos en paz.
+
+@jse_protect_lose
+on-arrival: trabajadores_falange += 3; jse_strength -= 50
+
+Desgraciadamente, nuestras milicias no han podido contra las camisas azules fascistas. La Falange ha demostrado su fuerza ante los ciudadanos. Algunos han decidido unirse a ellos.
+
+@cancelar
+on-arrival: trabajadores_falange += 3;
+
+La Falange ha demostrado su fuerza ante los ciudadanos. Algunos han decidido unirse al partido fascista.
+
+@main_rally
+
+Es importante mostrar nuestra presencia en las calles, tanto para promover nuestra ideología, como para convencer a nuevos miembros y votantes. ¿Por qué deberíamos marchar hoy?
+
+- @revolucion: Por la revolución, el fin del capitalismo, y la llegada del socialismo.
+- @sindicatos: En defensa de los sindicatos y las conquistas laborales.
+- @democracia: En defensa de la República y su sistema democrático.
+- @feminismo: Por los derechos de las mujeres.
+- @agraria: Por la reforma agraria.
+- @demagogia: Por los temas que más preocupen a los ciudadanos, con tal de atraer a nuevos votantes.
+- @easy_discard
+
+
+@revolucion
+on-arrival: fuerza_centristas -= 3; disidencia_centristas += 6; fuerza_sindicalistas += 2; disidencia_sindicalistas -= 3; pce_relacion += 7; cnt_relacion += 5; irl_relacion -= 3;
+
+El mensaje extremista preocupa a los centristas del PSOE y nuestros aliados republicanos, pero es bien recibido por los anarquistas y los comunistas.
+
+
+@sindicatos 
+on-arrival: fuerza_centristas -= 3; disidencia_centristas += 6; fuerza_sindicalistas += 3; disidencia_sindicalistas -= 6;
+
+La defensa del sindicalismo da alas a la facción más radical del partido.
+
+
+@democracia
+on-arrival: fuerza_centristas += 3; disidencia_centristas -= 6; fuerza_sindicalistas -= 3; disidencia_sindicalistas += 6; irl_relacion += 5; cnt_relacion -= 2; pce_relacion -= 1;
+
+La defensa de la democracia da alas a la facción más reformista del partido y tranquiliza a nuestros aliados en el Congreso, pero no gusta tanto a la CNT-FAI y el PCE.
+
+
+@agraria
+on-arrival: campesinos_psoe += 4*(1-disidencia);
+
+Cuando las noticias de nuestra marcha llegan a la España rural, muchos campesinos celebran la firmeza con la que el PSOE defiende sus derechos.
+
+
+@demagogia
+on-arrival: trabajadores_psoe += 3*(1-disidencia); burguesia_psoe += 1*(1-disidencia); profliberales_psoe += 2*(1-disidencia);
+
+Nuestra manifestación ha dado la impresión de que el PSOE es un partido que escucha al pueblo.
