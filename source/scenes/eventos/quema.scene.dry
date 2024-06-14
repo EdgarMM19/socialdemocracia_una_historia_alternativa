@@ -10,24 +10,24 @@ max-visits: 1
 La gente quiere quemar conventos por alguna razón.
 
 - @condenar: La República tiene que ser un lugar donde todos se sientan seguros, incluso los católicos.
-- @pasar: Criticaremos débilmente la agitación y la represión exacerbada de esta.
-- @unirse: Dirijamos la quema!
+- @pasar: Criticaremos débilmente la agitación...
+- @unirse: ¡Dirijamos la quema!
 
 @condenar
 on-arrival: catolicos_psoe += 2;
 
-blabla. TODO
+La Iglesia agradece nuestra condena de los incidentes, pero muchos desconfían de nuestras palabras. El republicanismo español es mayoritariamente anticlerical y la derecha católica va a instrumentalizar estos eventos.
 
 
 @pasar
-on-arrival: coup_progress += 1;
+on-arrival: coup_progress += 1; cnt_relacion += 5; pce_relacion += 10;
 
-blabla. TODO
+La República gana pocos aliados con esta posición, pero quizás la extrema izquierda desconfiará menos de nosotros.
 
 
 @unirse
-on-arrival: coup_progress += 5;
+on-arrival: coup_progress += 3; cnt_relacion += 10; pce_relacion += 5;
 
-Blabla. TODO
+¡La derecha católica se indigna ante estas acciones!
 
 
