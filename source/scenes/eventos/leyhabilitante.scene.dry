@@ -5,9 +5,9 @@ view-if: year == 1933 and month == 3
 tags: event
 max-visits: 1
 
-= Hitler consolida su poder como canciller
+= Hitler consolida su poder como Canciller
 
-Con la aprobación de la Ley Habilitante, termina la democracia en Alemania, y nuestra república pierde así uno de sus principales aliados.
+Con la aprobación de la Ley Habilitante, termina la democracia en Alemania, y nuestra República pierde así uno de sus principales aliados.
 
 
 - @condena: Condenamos firmemente esta escalada autoritaria.
@@ -20,6 +20,5 @@ El ascenso de Hitler no augura nada bueno para el futuro de Europa.
 
 
 @nada
-on-arrival: TODO
 
 Por ahora debemos ocuparnos de no sufrir el mismo destino que la República de Weimar.
