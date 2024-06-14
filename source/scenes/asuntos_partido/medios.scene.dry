@@ -1,0 +1,73 @@
+title: Medios
+new-page: true
+is-card: true
+tags: asuntos_partido
+view-if: media_timer <= 0
+on-arrival: month_actions += 1; media_timer = 6;
+card-image: img/sangerbund.jpg
+max-visits: 6
+
+= Medios
+
+El PSOE puede diseminar sus ideas a través de la revista *El Socialista*. ¿Qué deberíamos hacer con nuestra publicación?
+
+- @comercialismo
+- @electoralismo
+- @sindicalismo
+- @equilibrio
+- @barcelona
+- @return: Por ahora no necesitamos hacer nada con nuestros medios.
+- @easy_discard
+
+@comercialismo
+title: Hagamos que *El Socialista* llegue a un público más amplio.
+subtitle: Esto puede diluirnos ideológicamente, pero nos puede venir bien económicamente, y nos puede acercar a las clases medias.
+on-arrival: resources += 1; commercialized_media += 1; profliberales_psoe += 4*(1 - disidencia); disidencia_sindicalistas += 10; 
+
+Hemos ingresado más recursos, y la clase media urbana lee *El Socialista*. No todos en el partido apoyan esta deriva.
+
+
+@electoralismo
+title: Debemos centrarnos en promover a nuestros candidatos electorales.
+subtitle: La facción reformista prefiere esta dirección.
+on-arrival: campaign_media += 1; trabajadores_psoe += 4*(1 - disidencia); fuerza_centristas += 3; disidencia_centristas -= 6; fuerza_sindicalistas -= 3; disidencia_sindicalistas += 6;
+
+Con suerte, en las próximas elecciones veremos los frutos de nuestro trabajo.
+
+
+@sindicalismo
+title: Prioricemos nuestras acciones en materia laboral.
+subtitle: La facción sindicalista prefiere esta dirección.
+on-arrival: jse_militancy += 3; fuerza_centristas -= 3; disidencia_centristas += 6; fuerza_sindicalistas += 3; disidencia_sindicalistas -= 6;
+
+
+@equilibrio
+title: Demos voz a todas las alas del partido
+subtitle: Esto complacerá a las facciones que componen el PSOE.
+on-arrival: disidencia_centristas -= 8; disidencia_sindicalistas -= 8
+
+Gracias a esta decisión, el PSOE es ahora un partido más unido.
+
+
+@barcelona
+title: ¿Y si abrimos una edición en Barcelona?
+subtitle: -1 resources
+choose-if: resources >= 1
+unavailable-subtitle: No tenemos suficientes recursos.
+view-if: edibarna = 0
+on-arrival: edibarna = 1; resources -= 1; 
+
+¿Y en qué idioma?
+- @castellano
+- @catalan
+
+@castellano
+title: En castellano, la lengua nacional.
+subtitle: Los partidos nacionalistas no se lo tomarán bien.
+on-arrival: regionales_relacion -= 10; apoyo_regionales +=10; irl_relacion += 5; prr_relacion += 5;
+
+
+@catalan
+title: En catalán, la lengua mayoritaria de la región.
+subtitle: Así podremos competir con los partidos nacionalistas por el voto obrero catalán.
+on-arrival: regionales_relacion += 5; apoyo_regionales -= 5; trabajadores_psoe += 5; profliberales_psoe += 2;
