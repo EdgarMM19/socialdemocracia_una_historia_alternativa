@@ -1,0 +1,32 @@
+title: Quema de Conventos
+subtitle: Tradiciones catalanas
+view-if: year == 1931 and month == 5;
+max-visits: 1
+tags: event
+
+= Quema de conventos
+
+La gente quiere quemar conventos por alguna razón.
+
+- @condenar: La República tiene que ser un lugar donde todos se sientan seguros, incluso los católicos.
+- @pasar: Criticaremos débilmente la agitación y la represión exacerbada de esta.
+- @unirse: Dirijamos la quema!
+
+@condenar
+on-arrival: catolicos_psoe += 2;
+
+blabla. TODO
+
+
+@pasar
+on-arrival: coup_progress += 1;
+
+blabla. TODO
+
+
+@unirse
+on-arrival: coup_progress += 5;
+
+Blabla. TODO
+
+

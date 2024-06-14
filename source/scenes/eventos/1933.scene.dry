@@ -1,0 +1,11 @@
+title: 1933
+subtitle: Un nuevo año
+on-arrival: {!
+// Actualizar votos
+!}
+tags: event
+view-if: year = 1933 and month = 1
+priority: 2
+max-visits: 1
+
+BLABLA
