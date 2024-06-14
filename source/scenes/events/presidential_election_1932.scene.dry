@@ -6,7 +6,7 @@ max-visits: 1
 new-page: true
 on-arrival: braun_campaign = 0; hitler_support_hindenburg = 0; presidential_election_seen = 1; nsdap_candidate = "Hitler" if hitler_deported == 0 else nsdap_candidate = "Göring";
 tags: event
-go-to: election_algorithm
+go-to: algoritmo_elecciones
 set-jump: pres_election
 
 @pres_election
@@ -164,7 +164,7 @@ We failed to convince the DVP to support Braun.
 
 @final_election
 on-arrival: election_round = 0
-go-to: election_algorithm
+go-to: algoritmo_elecciones
 set-jump: post_election
 
 # TODO: change the election outcomes
@@ -385,7 +385,7 @@ We have switched our support to Hindenburg.
 - @round2_vote: Let the second round voting begin.
 
 @round2_vote
-go-to: election_algorithm
+go-to: algoritmo_elecciones
 set-jump: post_election
 
 @round2_results

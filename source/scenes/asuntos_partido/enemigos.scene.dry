@@ -13,12 +13,12 @@ En nuestros medios y materiales de campaña, ¿a quiénes deberíamos considerar
 
 [? si enemies != 0 : Anteriormente, habíamos considerado a los [+ enemies +] como nuestros enemigos anteriores. ¿Es necesario un cambio de dirección? ?]
 
-@anti_dem: Los partidos antidemocráticos de la extrema derecha e izquierda - el KPD, NSDAP, y DNVP.
-@far_right: La extrema derecha - el NSDAP y DNVP.
-@nsdap: Sólo el NSDAP.
-@kpd: El KPD.
-@bourgeois: Los partidos burgueses - el Centro y DVP.
-@easy_discard
+- @anti_dem: Los partidos antidemocráticos de la extrema derecha e izquierda - el KPD, NSDAP, y DNVP.
+- @far_right: La extrema derecha - el NSDAP y DNVP.
+- @nsdap: Sólo el NSDAP.
+- @kpd: El KPD.
+- @bourgeois: Los partidos burgueses - el Centro y DVP.
+- @easy_discard
 @anti_dem
 on-arrival: enemies = "partidos antidemocráticos"; fuerza_centro += 5; fuerza_reformista += 5; disenso_izquierda += 5; trabajadores_kpd -= 2; trabajadores_nsdap -= 2; trabajadores_dnvp -= 2; relación_kpd -= 10
 

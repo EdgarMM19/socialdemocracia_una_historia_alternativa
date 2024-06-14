@@ -1,4 +1,4 @@
-title: Return card to hand.
+title: Devolver la carta a la mano.
 view-if: difficulty <= 0
 go-to: root
 on-arrival: {!

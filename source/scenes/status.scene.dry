@@ -8,13 +8,15 @@ is-special: true
 
 Recursos disponibles: [+ resources +]
 
-Posición PSOE: [? if spd_toleration : toleration ?][? if spd_in_government : in government ?][? if spd_toleration == 0 and spd_in_government == 0 : opposition ?]
+Posición PSOE: [? if toleramos_el_gobierno : toleramos el gobierno ?][? if psoe_gobierno : gobernando ?][? if toleramos_el_gobierno == 0 and psoe_gobierno == 0 : oposición ?]
 
 Disidencia interna: [+ dissent_percent : dissent +]
 
+
+Presidente de la república: [+ presidente_republica +]
 = Gobierno
 
-Presidente: [+ president +]
+Presidente: [+ jefe_gobierno +]
 
 
 Composición Parlamento:
