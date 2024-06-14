@@ -9,14 +9,13 @@ tags: asuntos_partido
 
 = Campaña
 
-Independientemente de si estamos en una campaña electoral o no, el partido siempre está tratando de ampliar su base de votantes. ¿En quién deberíamos centrar nuestros esfuerzos de campaña?
+Independientemente de si se avecinan elecciones, nuestro partido debe consolidar su base de votantes. ¿En quién deberíamos centrar nuestros esfuerzos de campaña?
 
-- @workers: La clase trabajadora urbana, nuestra base de apoyo tradicional.
-- @new_middle: La "nueva clase media" de empleados gubernamentales y trabajadores de cuello blanco.
-- @old_middle: La "vieja clase media" de pequeños empresarios independientes y artesanos.
-- @rural: Trabajadores rurales y pequeños agricultores, quienes se han sentido descuidados por nosotros en el pasado.
-- @mujeres: Las mujeres.
-- @catholics: Católicos, quienes típicamente apoyan al Partido del Centro.
+- @workers: La clase obrera industrial.
+- @new_middle: Las profesiones liberales y clases medias urbanas.
+- @old_middle: La pequeña burguesía.
+- @rural: Los campesinos.
+- @mujeres: Las mujeres, que ya pueden votar.
 - @root: No queremos o no podemos hacer campaña en este momento.
 - @easy_discard
 
@@ -27,7 +26,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Recursos insuficientes.
 on-arrival: trabajadores_psoe += 6; resources -= 1;
 
-Hemos incrementado nuestra campaña entre los trabajadores. 
+Hemos intentado ganar más apoyos entre la clase obrera industrial.
 
 @new_middle
 subtitle: -1 resources
@@ -35,7 +34,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Recursos insuficientes.
 on-arrival: profliberales_psoe += 6; resources -= 1;
 
-Hemos incrementado nuestra campaña entre la nueva clase media. 
+Hemos intentado ganar más apoyos entre la clase media urbana. 
 
 @old_middle
 subtitle: -1 resources
@@ -43,7 +42,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Recursos insuficientes.
 on-arrival: burguesia_psoe += 4; resources -= 1;
 
-Hemos incrementado nuestra campaña entre la vieja clase media. 
+Hemos intentado ganar más apoyos entre la pequeña burguesía. 
 
 @rural
 subtitle: -1 resources
@@ -51,7 +50,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Recursos insuficientes.
 on-arrival: campesinos_psoe += 5; resources -= 1;
 
-Hemos incrementado nuestra campaña entre los agricultores. 
+Hemos intentado ganar más apoyos entre los campesinos. 
 
 @mujeres
 subtitle: -1 resources
@@ -60,13 +59,4 @@ view-if: sufragio femenino == 1
 unavailable-subtitle: Recursos insuficientes.
 on-arrival: campesinos_psoe += 6; resources -= 1;
 
-Hemos incrementado nuestra campaña entre las mujeres. 
-
-@catholics
-subtitle: -1 recursos
-choose-if: recursos >= 1
-unavailable-subtitle: Recursos insuficientes.
-on-arrival: campesinos_psoe += 2; resources -= 1;
-view-if: partido_pueblo == 1
-
-Hemos incrementado nuestra campaña entre los católicos.
+Hemos intentado ganar más apoyos entre las mujeres, ahora que pueden votar.
