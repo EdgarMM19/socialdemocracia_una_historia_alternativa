@@ -1,0 +1,25 @@
+title: Malas noticias de Alemania...
+new_page: true
+subtitle: ¡Hitler adquiere poderes absolutos!
+view-if: year == 1933 and month == 3
+tags: event
+max-visits: 1
+
+= Hitler consolida su poder como canciller
+
+Con la aprobación de la Ley Habilitante, termina la democracia en Alemania, y nuestra república pierde así uno de sus principales aliados.
+
+
+- @condena: Condenamos firmemente esta escalada autoritaria.
+- @nada: Tenemos asuntos más urgentes de los que ocuparnos.
+
+@condena
+on-arrival: TODO
+
+El ascenso de Hitler no augura nada bueno para el futuro de Europa.
+
+
+@nada
+on-arrival: TODO
+
+Por ahora debemos ocuparnos de no sufrir el mismo destino que la República de Weimar.
