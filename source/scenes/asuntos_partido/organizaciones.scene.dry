@@ -7,7 +7,7 @@ on-arrival: month_actions += 1; party_organizations_timer = 6;
 card-image: img/Mann_der_Arbeit.jpg
 max-visits: 5
 
-= Party Organizations
+= Organizaciones del partido
 
 El partido es mucho más que nuestros diputados en el Congreso. ¿Cuáles de nuestras organizaciones deberíamos priorizar?
 
