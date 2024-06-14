@@ -1,0 +1,40 @@
+title: Eligiendo Nuestros Enemigos
+new-page: true
+view-if: year <= 1930 and enemies_timer <= 0
+on-arrival: acciones_mensuales += 1; enemies_timer = 18
+max-visits: 3
+is-card: true
+card-image: img/poster_1.png
+tags: asuntos_partido
+
+= Eligiendo Nuestros Enemigos
+
+En nuestros medios y materiales de campaña, ¿a quiénes deberíamos considerar como nuestros principales oponentes?
+
+[? si enemies != 0 : Anteriormente, habíamos considerado a los [+ enemies +] como nuestros enemigos anteriores. ¿Es necesario un cambio de dirección? ?]
+
+@anti_dem: Los partidos antidemocráticos de la extrema derecha e izquierda - el KPD, NSDAP, y DNVP.
+@far_right: La extrema derecha - el NSDAP y DNVP.
+@nsdap: Sólo el NSDAP.
+@kpd: El KPD.
+@bourgeois: Los partidos burgueses - el Centro y DVP.
+@easy_discard
+@anti_dem
+on-arrival: enemies = "partidos antidemocráticos"; fuerza_centro += 5; fuerza_reformista += 5; disenso_izquierda += 5; trabajadores_kpd -= 2; trabajadores_nsdap -= 2; trabajadores_dnvp -= 2; relación_kpd -= 10
+
+Atacar a la extrema derecha e izquierda es popular entre todos menos en el ala izquierda de nuestro partido, que preferiría luchar contra los partidos burgueses. Esto también podría dificultar nuestra capacidad para reconciliarnos con el KPD en el futuro.
+
+@far_right
+on-arrival: enemies = "extrema derecha"; fuerza_izquierda += 5; disenso_izquierda -= 5; trabajadores_nsdap -= 3; trabajadores_dnvp -= 3;
+
+Atacar a la extrema derecha es popular en todo el partido, aunque la izquierda considera que los partidos burgueses son igualmente peligrosos, mientras que la derecha critica nuestra falta de respuesta al KPD. Nuestros socios de coalición burgueses también son escépticos de nuestro compromiso contra el comunismo.
+
+@nsdap
+on-arrival: enemies = "NSDAP"; fuerza_neorevisionista += 5; urgencia_nazi += 1; trabajadores_nsdap -= 4;
+
+[? si urgencia_nazi == 0 o nsdap_r < 10 : El NSDAP es un partido diminuto en este momento, con más ruido que mordida. Muchos en nuestro partido están cuestionando nuestras decisiones. ?][? si urgencia_nazi > 0 y nsdap_r >= 10 : Los nazis son el problema más urgente que debemos enfrentar. ?]
+
+@kpd
+on-arrival: enemies = "KPD"; fuerza_reformista += 5; disenso_izquierda += 8; disenso_reformista -= 5; relación_kpd -= 15; relación_dvp += 5; relación_z += 5; trabajadores_kpd -= 4;
+
+Atacar al KPD es apoyado por todos menos por los socialistas más izquierdistas, y nos gana cierto grado de aprobación entre los partidos burgueses. Sin embargo, si vamos a reconciliarnos con el KPD, esta puede no ser la mejor opción.

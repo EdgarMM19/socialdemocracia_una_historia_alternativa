@@ -15,51 +15,58 @@ Independientemente de si estamos en una campaña electoral o no, el partido siem
 - @new_middle: La "nueva clase media" de empleados gubernamentales y trabajadores de cuello blanco.
 - @old_middle: La "vieja clase media" de pequeños empresarios independientes y artesanos.
 - @rural: Trabajadores rurales y pequeños agricultores, quienes se han sentido descuidados por nosotros en el pasado.
-- @unemployed: Los desempleados.
+- @mujeres: Las mujeres.
 - @catholics: Católicos, quienes típicamente apoyan al Partido del Centro.
 - @root: No queremos o no podemos hacer campaña en este momento.
 - @easy_discard
 
 
 @workers
-subtitle: -1 recursos
-choose-if: recursos >= 1
+subtitle: -1 resources
+choose-if: resources >= 1
 unavailable-subtitle: Recursos insuficientes.
+on-arrival: trabajadores_psoe += 6; resources -= 1;
 
 Hemos incrementado nuestra campaña entre los trabajadores. 
 
 @new_middle
-subtitle: -1 recursos
-choose-if: recursos >= 1
+subtitle: -1 resources
+choose-if: resources >= 1
 unavailable-subtitle: Recursos insuficientes.
+on-arrival: profliberales_psoe += 6; resources -= 1;
 
 Hemos incrementado nuestra campaña entre la nueva clase media. 
 
 @old_middle
-subtitle: -1 recursos
-choose-if: recursos >= 1
+subtitle: -1 resources
+choose-if: resources >= 1
 unavailable-subtitle: Recursos insuficientes.
+on-arrival: burguesia_psoe += 4; resources -= 1;
 
 Hemos incrementado nuestra campaña entre la vieja clase media. 
 
 @rural
-subtitle: -1 recursos
-choose-if: recursos >= 1
+subtitle: -1 resources
+choose-if: resources >= 1
 unavailable-subtitle: Recursos insuficientes.
+on-arrival: campesinos_psoe += 5; resources -= 1;
 
 Hemos incrementado nuestra campaña entre los agricultores. 
 
-@unemployed
-subtitle: -1 recursos
-choose-if: recursos >= 1
+@mujeres
+subtitle: -1 resources
+choose-if: resources >= 1 
+view-if: sufragio femenino == 1
 unavailable-subtitle: Recursos insuficientes.
+on-arrival: campesinos_psoe += 6; resources -= 1;
 
-Hemos incrementado nuestra campaña entre los desempleados. 
+Hemos incrementado nuestra campaña entre las mujeres. 
 
 @catholics
 subtitle: -1 recursos
 choose-if: recursos >= 1
 unavailable-subtitle: Recursos insuficientes.
+on-arrival: campesinos_psoe += 2; resources -= 1;
 view-if: partido_pueblo == 1
 
 Hemos incrementado nuestra campaña entre los católicos.
