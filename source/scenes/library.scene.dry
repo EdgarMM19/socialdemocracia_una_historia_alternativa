@@ -52,7 +52,7 @@ Q.pro_republic = Math.round(Q.pro_republic);
 Q.nationalism = Math.round(Q.nationalism);
 Q.socialism = Math.round(Q.socialism);
 !}
-go-to: election_algorithm
+go-to: algoritmo_elecciones
 set-jump: election_projections
 
 **Public Opinion**

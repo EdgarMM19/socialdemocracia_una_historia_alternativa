@@ -6,42 +6,38 @@ is-special: true
 
 [+ month : month +] [+ year +]
 
-Resources available: [+ resources +]
+Recursos disponibles: [+ resources +]
 
-SPD position: [? if spd_toleration : toleration ?][? if spd_in_government : in government ?][? if spd_toleration == 0 and spd_in_government == 0 : opposition ?]
+Posición PSOE: [? if spd_toleration : toleration ?][? if spd_in_government : in government ?][? if spd_toleration == 0 and spd_in_government == 0 : opposition ?]
 
-Internal dissent: [+ dissent_percent : dissent +]
+Disidencia interna: [+ dissent_percent : dissent +]
 
-= Government
+= Gobierno
 
-President: [+ president +]
+Presidente: [+ president +]
 
-Chancellor: [+ chancellor +] ([+ chancellor_party +])
 
-Reichstag composition:
+Composición Parlamento:
 
-# 1928: 30, 1930: 25, 1932: 22
-SPD: [+ spd_r +]%
-# 1928: 15, 1930: 15, 1932: 
-Z + BVP: [+ z_r +]%
-# 1928: 10, 1930: 13
-KPD: [+ kpd_r +]%
-# 1928: 5, 1930: 4 (as DstP)
-DDP: [+ ddp_r +]%
-# 1928: 9, 1930: 5
-DVP: [+ dvp_r +]%
-# 1928: 14, 1930: 7
-DNVP: [+ dnvp_r +]%
-# 1928: 3, 1930: 18
-NSDAP: [+ nsdap_r +]%
-# 1928: 9, 1930: 10
-Others: [+ other_r +]%
+PSOE: [+ psoe_p +]%
 
-[? if spd_in_government = 1 : Budget: [+ budget +] ?]
+ERC+PNB: [+ regionales_p +]%
 
-[? if black_thursday_seen = 1 : Unemployment: [+ unemployed +]% ?]
+CEDA: [+ ceda_p +]%
 
-Next election: [+ next_election_month : month +] [+ next_election_year +]
+Falange: [+ falange_p +]%
+
+PCE: [+ pce_p +]%
+
+RdCD: [+ prr_p +]%
+
+RdI: [+ irl_p +]%
+
+Abstención anarquista: [+ abstencion_anarquista +]%
+
+[? if psoe_gobierno = 1 : Presupuesto: [+ budget +] ?]
+
+Próximas elecciones: [+ next_election_month : month +] [+ next_election_year +]
 
 
 # = Public Opinion

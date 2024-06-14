@@ -1,0 +1,44 @@
+title: Elecciones
+on-arrival: {!
+
+Q['regionales_normalized'] = Q.poblacion_regional * Q.apoyo_regionales / 10000;
+Q['regionales_votes'] = Math.round(Q['regionales_normalized']*100);
+for (var c of Q.clases) {
+    var class_votes = 0;
+    for (var party of Q.partidos) {
+        if (Q[c+'_'+party] < 0) {
+            Q[c+'_'+party] = 0;
+        }
+        class_votes += Q[c+'_'+party];
+    }
+    for (var party of Q.partidos) {
+        Q[c + '_' + party + '_normalized'] = Math.round(100*Q[c+'_'+party]/class_votes);
+    }
+}
+
+var total_support = 0;
+for (var party of Q.partidos) {
+    var party_support = 0;
+    for (var c of Q.clases) {
+        if (c != "mujeres" || Q.sufragio_femenino == 1){
+            party_support += Q[c]*Q[c+'_'+party+'_normalized'];
+        }
+    }
+    Q[party + '_support'] = party_support;
+    total_support += party_support;
+}
+if(Q.anarquistas_se_presentan == 0) {
+    Q["abstencion_anarquista"] = Math.round(Q["anarquistas_support"]*100/total_support)
+    total_support -= Q["anarquistas_support"]
+}
+for (var party of Q.partidos) {
+    Q[party+'_normalized'] = Q[party + '_support']*(1-Q['regionales_normalized'])/total_support;
+    Q[party+'_votes'] = Math.round(Q[party+'_normalized']*100);
+}
+
+if(Q.anarquistas_se_presentan == 0) {
+    anarquistas_votes = 0;
+}
+!}
+go-to: jumpScene
+

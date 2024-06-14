@@ -1,77 +1,42 @@
-title: Reichstag Elections
+title: Elecciones parlamentarias
 new-page: true
 tags: event
 view-if: year >= next_election_year and month >= next_election_month
 on-departure: month_actions += 1; in_election = 0; next_election_year = next_election_year + 4; n_elections += 1; next_election_time = time + 48;
-set-jump: post_election_1928
+set-jump: post_elecciones
 
 = Elections, [+ month : month +] [+ year +]
 
-The Reichstag elections are to be held now.
+Elecciones!
 
-- @election_algorithm: May we do our best...
-- @cancel_elections
+- @algoritmo_elecciones: A ver si hay suerte...
 
-@cancel_elections
-title: We cannot hold the elections now. Cancel the elections.
-subtitle: This is an anti-democratic move that may backfire.
-view-if: in_emergency_government == 1 and president == "Braun"
-
-Since we are currently ruling as part of an emergency government, we may use quasi-constitutional trickery to significantly delay these elections, and continue governing via Article 48. This is likely to be extremely unpopular both with our base and with the other parties. However, this may be necessary to prevent the extremists from gaining power.
-
-- @cancel_elections_2: Yes, do it.
-- @election_algorithm: No, let's hold the elections.
-
-@cancel_elections_2
-on-departure: next_election_year = next_election_year + 1; next_election_time = time + 12; pro_republic -= 6; dvp_relation -= 8; z_relation -= 8; ddp_relation -= 10; kpd_relation -= 8; coup_progress += 2; workers_spd -= 4; new_middle_spd -= 5; old_middle_spd -= 5; rural_spd -= 5; catholics_spd -= 5; unemployed_spd -= 5; coup_progress += 2 if nsdap_normalized > 0.4
-achievement: ausnahmezustand
-
-Fine. President [+ president +] has taken the unprecedented step of canceling these elections. New elections are scheduled for [+ next_election_month : month +] [+ next_election_year +].
-
-Let us hope this does not backfire.
-
-@post_election_1928
+@post_elecciones
 on-arrival: {!
-// set congress proportion to votes
-Q.spd_r = Q.spd_votes;
-Q.z_r = Q.z_votes;
-Q.kpd_r = Q.kpd_votes;
-Q.ddp_r = Q.ddp_votes;
-Q.dvp_r = Q.dvp_votes;
-Q.dnvp_r = Q.dnvp_votes;
-Q.nsdap_r = Q.nsdap_votes;
-Q.other_r = Q.other_votes;
 
-// The largest party can only be the NSDAP or the SPD.
-Q.largest_party = 'SPD';
-if (Q.nsdap_r >= Q.spd_r && Q.nsdap_r >= Q.kpd_r) {
-    Q.largest_party = 'NSDAP';
+Q.regionales_p = Q.regionales_votes;
+Q.ceda_p = Q.ceda_votes;
+Q.falange_p = Q.falange_votes;
+Q.psoe_p = Q.psoe_votes;
+Q.pce_p = Q.pce_votes;
+Q.prr_p = Q.prr_votes;
+Q.irl_p = Q.irl_votes;
+Q.anarquistas_p = Q.anarquistas_votes;
+
+Q.largest_party = 'CEDA';
+if (Q.psoe_p >= Q.pce_p && Q.psoe_p >= Q.ceda_p) {
+    Q.largest_party = 'PSOE';
 }
-if (Q.kpd_r >= Q.spd_r && Q.kpd_r >= Q.nsdap_r) {
-    Q.largest_party = 'KPD';
+if (Q.pce_p >= Q.psoe_p && Q.pce_p >= Q.ceda_p) {
+    Q.largest_party = 'PCE';
 }
 
 // coalitions
-Q.weimar_coalition = Q.spd_r + Q.ddp_r + Q.z_r - 3;
-Q.grand_coalition = Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r;
-Q.bourgeois_coalition = Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r;
-Q.center_right_coalition = Q.z_r + Q.ddp_r + Q.dvp_r + Q.other_r + Q.dnvp_r;
-Q.right_coalition = Q.z_r + Q.dvp_r + Q.other_r + Q.dnvp_r;
-Q.far_right_coalition = Q.dnvp_r + Q.nsdap_r;
-Q.left_coalition = Q.spd_r + Q.kpd_r;
-// this is an absurd concept lol
-Q.popular_front_coalition = Q.spd_r + Q.kpd_r + Q.z_r + Q.ddp_r - 3;
-Q.anti_democratic_coalition = Q.kpd_r + Q.nsdap_r + Q.dnvp_r;
-// aka everyone except nazi, kpd, dnvp
-Q.neo_weimar_coalition = Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r;
-// Hitler + Right-wing parties (only comes into effect if you've alienated Z too badly)
-Q.hitler_right_coalition = Q.z_r + Q.dnvp_r + Q.nsdap_r;
-// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights
-Q.progressive_coalition = Q.spd_r + Q.kpd_r + Q.ddp_r;
+// VOTOS COALICIONES
+Q.coalicion_izquierda_y_regionalistas = Q.regionales_p + Q.psoe_p + Q.pce_p + Q.prr_p + Q.irl_p;
+Q.leverage = Q.psoe_p;
 
-Q.leverage = Q.spd_r;
-
-Q.grand_coalition_failed = 0;
+// TODO:
 // Reset government and ministers... Based on Brüning's 1930 govt
 Q.coalition_dissent = 0;
 Q.kpd_coalition_dissent = 0;
@@ -91,77 +56,59 @@ Q.economic_minister_party = 'DDP';
 Q.finance_minister_party = 'DVP';
 Q.agriculture_minister_party = 'Z';
 
-// reset KPD goals
-Q.kpd_goals_seen = 0;
-Q.kpd_ultimatum_seen = 0;
-Q.welfare_goal = 0;
-Q.agriculture_goal = 0;
-Q.economy_goal = 0;
-Q.finance_goal = 0;
-Q.labor_goal = 0;
-Q.foreign_goal = 0;
-Q.interior_goal = 0;
-Q.reichswehr_goal = 0;
-
-Q.welfare_goal_completed = 0;
-Q.agriculture_goal_completed = 0;
-Q.economy_goal_completed = 0;
-Q.finance_goal_completed = 0;
-Q.labor_goal_completed = 0;
-Q.foreign_goal_completed = 0;
-Q.interior_goal_completed = 0;
-Q.reichswehr_goal_completed = 0;
 !}
-on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_r >= 15)
 go-to: coalition_menu
 
-**Election results:**
+**Resultado elecciones:**
 
-SPD: [+ spd_r +]%
+PSOE: [+ psoe_p +]%
 
-Z + BVP: [+ z_r +]% (BVP: 3%)
+ERC+PNB: [+ regionales_p +]%
 
-KPD: [+ kpd_r +]%
+CEDA: [+ ceda_p +]%
 
-DDP: [+ ddp_r +]%
+Falange: [+ falange_p +]%
 
-DVP: [+ dvp_r +]%
+PCE: [+ pce_p +]%
 
-DNVP: [+ dnvp_r +]%
+RdCD: [+ prr_p +]%
 
-NSDAP: [+ nsdap_r +]%
+RdI: [+ irl_p +]%
 
-Other (mostly conservatives): [+ other_r +] %
+Un [+ abstencion_anarquista +]% de la población son anarquistas y no han votado.
 
-**Potential coalitions:**
+**Posibles coaliciones:**
 
-Weimar Coalition (SPD + Z + DDP): [+ weimar_coalition +]%
-
-Grand Coalition (SPD + Z + BVP + DDP + DVP): [+ grand_coalition +]%
-
-Bourgeois Coalition (Z + BVP + DDP + DVP + Others): [+ bourgeois_coalition +]%
-
-Right-wing Coalition (Z + BVP + DVP + Others + DNVP): [+ right_coalition +]%
-
-[? if nazi_urgency <= 1 and nsdap_r >= 15 : The rapid rise in NSDAP votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
-
-[? if anti_democratic_coalition >= 50 : Together, the anti-democratic KPD, DNVP, and NSDAP have a majority in the Reichstag. A stable governing majority will be almost impossible. ?]
+Izquierda con nacionalistas (PSOE + PCE + ERC + PNB + PRR + IRL): [+ coalicion_izquierda_y_regionalistas +]%
 
 There are some potential coalition arrangements.
 
 @coalition_menu
 
-- @spd_majority
-- @weimar_coalition
-- @grand_coalition
-- @right_coalition
-- @far_right_coalition
-- @no_majority
-- @brauns_dilemma
-- @left_coalition
-- @popular_front_coalition
+- @mayoria_psoe
+- @coalicion_1931
 
-# TODO: black-brown coalition
+
+
+
+@mayoria_psoe
+title: Mayoría del PSOE
+subtitle: PSOE: [+ psoe_p +]%
+view-if: psoe_p >= 50
+on-arrival: chancellor = "Empty"; chancellor_party = "SPD"; spd_in_government = 1; in_spd_majority = 1; pro_republic += 5; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.05; 
+achievement: majority_party
+
+Podemos gobernar en solitario!
+
+
+@coalicion_1931
+title: Coalición republicana izquierdista!
+subtitle: PSOE + PCE + ERC + PNB + PRR + IRL ([+ coalicion_izquierda_y_regionalistas +]%)
+view-if: coalicion_izquierda_y_regionalistas >= 50
+choose-if: irl_relation > 40
+unavailable-subtitle: No es posible la coalición
+
+Esta coalición trabajará por la república y los trabajadores!
 
 
 @popular_front_coalition

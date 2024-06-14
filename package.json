@@ -1,6 +1,6 @@
 {
-  "name": " social_democracy_alternate_history",
-  "version": "0.10.0",
+  "name": " socialdemocracia_una_historia_alternativa",
+  "version": "0.1.0",
   "description": "Building the game:",
   "main": "out/html/index.html",
   "scripts": {
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://aucchen@github.com/aucchen/social_democracy_alternate_history.git"
+    "url": "git+https://EdgarMM19@github.com/EdgarMM19/socialdemocracia_una_historia_alternativa.git"
   },
   "keywords": [],
-  "author": "Autumn Chen",
+  "author": "Edgar Moreno",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aucchen/social_democracy_alternate_history/issues"
+    "url": "https://github.com/EdgarMM19/socialdemocracia_una_historia_alternativa"
   },
-  "homepage": "https://github.com/aucchen/social_democracy_alternate_history",
+  "homepage": "https://github.com/EdgarMM19/socialdemocracia_una_historia_alternativa",
   "dependencies": {
     "dendrynexus": "github:aucchen/dendrynexus"
   }

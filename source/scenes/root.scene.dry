@@ -8,13 +8,13 @@ go-to: post_event if started = 1; start_menu if started = 0
 new-page: true
 go-to: start_menu_2
 
-= Social Democracy: An Alternate History
+= Social Democracia: Una Historia Alternativa
 
 @start_menu_2
 
-- @start: Start game
-- @election_simulation: Election simulation
-- @credits: Credits
+- @start: Empezar a jugar
+- @election_simulation: Simulador de elecciones
+- @credits: Creditos
 - @game_over.achievements
 
 
@@ -23,14 +23,15 @@ on-arrival: {!
 Q.started = 1;
 // time elapsed (in months)
 Q.time = 1;
-Q.year = 1928;
-Q.month = 1;
+Q.year = 1931;
+Q.month = 4;
 // how many actions have been taken this month?
 Q.month_actions = 0;
 
 // 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves
 Q.difficulty = 0;
 // old demographics
+// TDEL:
 Q.old_demographics = 0;
 
 // party resources
@@ -44,8 +45,15 @@ Q.dissent = 0.05;
 Q.dissent_percent = 5;
 
 // factions
+Q.factions = ['centristas', 'sindicalistas', 'labor', 'reformist', 'neorevisionist'];
 Q.factions = ['left', 'center', 'labor', 'reformist', 'neorevisionist'];
 // should this be normalized to 100%?
+Q.fuerza_centrista = 70;
+Q.disidencia_centrista = 15;
+Q.fuerza_sindicalista = 30;
+Q.disidencia_sindicalista = 30;
+
+// TDEL:
 Q.left_strength = 15;
 Q.left_dissent = 20;
 Q.center_strength = 30;
@@ -57,6 +65,8 @@ Q.reformist_dissent = 5;
 Q.neorevisionist_strength = 5;
 Q.neorevisionist_dissent = 10;
 
+
+// TDEL:
 // secret events...
 Q.unions_independent = 0;
 Q.center_resigned = 0;
@@ -65,6 +75,8 @@ Q.reformists_resigned = 0;
 
 // have we discovered neorevisionism?
 Q.neorevisionism = 0;
+
+
 
 // crisis_urgency indicates how seriously the SPD is taking the economic crisis - scale from 0 to 10.
 Q.crisis_urgency = 0;
@@ -95,6 +107,18 @@ Q.nationalization_adopted = 0;
 
 // organizations
 
+
+
+// inter-party relations
+Q.regionales_relation = 70;
+Q.ceda_relation = 55;
+Q.falange_relation = 0;
+Q.pce_relation = 60;
+Q.prr_relation = 80;
+Q.irl_relation = 50;
+Q.anarquistas_relation = 35;
+
+// TDEL:
 // inter-party relations
 Q.z_relation = 50;
 Q.kpd_relation = 25;
@@ -104,18 +128,63 @@ Q.dvp_relation = 35;
 Q.DNVP_relation = 10;
 Q.NSDAP_relation = 0;
 
+Q.ceda_lider = "TODO";
+Q.pce_lider = "TODO";
+
+// TDEL:
 Q.kpd_leader = "Thälmann";
 Q.z_leader = "Brüning";
 
+// TDEL:
 // hmm... maybe we can play nice with Hindenburg???
 Q.hindenburg_relation = 25;
 
 
+Q.psoe_catalunya = 0;
+Q.gobierno_regionales = "PNB";
+
+
+//TDEL
 // Does the SPD lead in Prussia?
 Q.spd_prussia = 1;
 // Options: spd, z, dnvp, papen, nsdap
 Q.prussian_government = "SPD";
 
+
+
+// Numeros en miles de militantes
+Q.asalto_strength = 1;
+Q.asalto_militancy = 17;
+Q.asalto_loyalty = 0.60;
+
+Q.gcivil_strength = 1;
+Q.gcivil_militancy = 22;
+Q.gcivil_loyalty = 0.60;
+
+Q.ejercito_strength = 1;
+Q.ejercito_militancy = 66;
+Q.ejercito_loyalty = 0.52;
+
+Q.mossos_strength = 1;
+Q.mossos_militancy = 0.3;
+Q.mossos_loyalty = 1.0;
+
+Q.jons_strength = 1;
+Q.jons_militancy = 35;
+
+Q.jap_strength = 1;
+Q.jap_militancy = 12;
+
+Q.fai_strength = 1;
+Q.fai_militancy = 50;
+
+Q.jse_strength = 1;
+Q.jse_militancy = 30;
+
+Q.milicias_comunistas_strength = 1;
+Q.milicias_comunistas_militancy = 15;
+
+//TDEL:
 // The array of forces - paramilitary groups
 // Number of members in 1928 (in thousands)
 // Reichsbanner, stahlhelm, SA, rotfrontkämpferbund
@@ -148,9 +217,12 @@ Q.prussian_police_loyalty = 0.5;
 Q.reichswehr_strength = 100;
 Q.reichswehr_militancy = 5;
 Q.reichswehr_loyalty = 0.2;
+//ENDTDEL
+
 
 // The state of the country
 
+// TODO: check real numbers
 // popular opinion
 // national ideology - on a binary scale
 // nationalism vs internationalism or pacifism or non-nationalism
@@ -158,8 +230,9 @@ Q.nationalism = 60;
 // socialism vs capitalism
 Q.socialism = 40;
 // pro-republic vs anti-republic
-Q.pro_republic = 59;
+Q.pro_republic = 51;
 
+//TDEL:
 Q.emergency_rule = 0;
 
 // coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.
@@ -169,14 +242,21 @@ Q.capital_strike_progress = 0;
 
 Q.budget = 5;
 
-// Proportion of different social groups
-// source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 45, table 3.4 - using 1925 figures
+//TODO: mirar real
+Q.trabajadores = 48;
+Q.campesinos = 35;
+Q.profliberales = 10;
+Q.burguesia = 10;
+Q.mujeres = 25;
+Q.catolicos = 35;
+Q.poblacion_regional = 20;
+// Percentatge catalunya: 14%
+// Pais vasc: 5%
+
 Q.workers = 48; // industry and trade
 Q.old_middle = 13; // "old mittelstand"
-// 16.4 trade & commerce, 6.6 public and private services, 4.4 domestic help
-Q.new_middle = 14; // "new mittelstand"
-Q.rural = 25; // agriculture and forestry employment... but many of those are proletarians so...
-// source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
+Q.new_middle = 14;
+Q.rural = 25; 
 Q.unemployed = 8.6;
 Q.catholics = 30;
 
@@ -193,72 +273,80 @@ Q.inflation = 2.9;
 Q.workers_sol = 100;
 Q.rural_sol = 100;
 
-Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
-Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
-
-// Support for party by social group
-// they don't have to sum to 100 since the electoral calculations will be normalized.
-Q.workers_spd = 60;
-Q.workers_kpd = 20;
-Q.workers_z = 5;
-Q.workers_ddp = 0;
-Q.workers_dvp = 0;
-Q.workers_dnvp = 5;
-Q.workers_nsdap = 0;
-Q.workers_other = 10;
-
-Q.old_middle_spd = 5;
-Q.old_middle_kpd = 0;
-Q.old_middle_z = 5;
-Q.old_middle_ddp= 10;
-Q.old_middle_dvp = 25;
-Q.old_middle_dnvp = 25;
-Q.old_middle_nsdap = 10;
-Q.old_middle_other = 10;
-
-Q.new_middle_spd = 5;
-Q.new_middle_kpd = 1;
-Q.new_middle_z = 10;
-Q.new_middle_ddp= 25;
-Q.new_middle_dvp = 25;
-Q.new_middle_dnvp = 10;
-Q.new_middle_nsdap = 5;
-Q.new_middle_other = 15;
-
-Q.rural_spd = 10;
-Q.rural_kpd = 0;
-Q.rural_z = 5;
-Q.rural_ddp= 5;
-Q.rural_dvp = 15;
-Q.rural_dnvp = 45;
-Q.rural_nsdap = 5;
-Q.rural_other = 10;
-
-Q.unemployed_spd = 25;
-Q.unemployed_kpd = 51;
-Q.unemployed_z = 0;
-Q.unemployed_ddp = 0;
-Q.unemployed_dvp = 0;
-Q.unemployed_dnvp = 5;
-Q.unemployed_nsdap = 25;
-Q.unemployed_other = 5;
-
-Q.catholics_spd = 15;
-Q.catholics_kpd = 2;
-Q.catholics_z = 50;
-Q.catholics_ddp = 0;
-Q.catholics_dvp = 5;
-Q.catholics_dnvp = 5;
-Q.catholics_nsdap = 0;
-Q.catholics_other = 12;
+// ENDTODO
 
 
-// Current Reichstag composition
-// % of Reichstag in Jan 1928
-// source: wikipedia
-// note: the Z figures also include the BVP (Bavarian people's party)
-// since they were ideologically similar, but they were separate parties.
-// They did not have a CDU/CSU-style relationship.
+Q.clases = ["trabajadores", "campesinos", "profliberales", "burguesia", "mujeres", "catolicos"]
+Q.partidos = ["psoe", "ceda", "falange", "pce", "prr", "irl", "anarquistas"]
+// TMB regionales
+
+Q.apoyo_regionales = 50;
+
+Q.trabajadores_ceda = 0;
+Q.trabajadores_falange = 0;
+Q.trabajadores_psoe = 40;
+Q.trabajadores_pce = 10;
+Q.trabajadores_prr = 10;
+Q.trabajadores_irl = 15;
+Q.trabajadores_anarquistas = 25;
+
+
+Q.campesinos_ceda = 5;
+Q.campesinos_falange = 0;
+Q.campesinos_psoe = 25;
+Q.campesinos_pce = 5;
+Q.campesinos_prr = 5;
+Q.campesinos_irl = 0;
+Q.campesinos_anarquistas = 40;
+
+
+Q.profliberales_ceda = 0;
+Q.profliberales_falange = 0;
+Q.profliberales_psoe = 20;
+Q.profliberales_pce = 0;
+Q.profliberales_prr = 20;
+Q.profliberales_irl = 40;
+Q.profliberales_anarquistas = 5;
+
+
+Q.burguesia_ceda = 10;
+Q.burguesia_falange = 0;
+Q.burguesia_psoe = 5;
+Q.burguesia_pce = 0;
+Q.burguesia_prr = 50;
+Q.burguesia_irl = 25;
+Q.burguesia_anarquistas = 0;
+
+
+Q.mujeres_ceda = 35;
+Q.mujeres_falange = 0;
+Q.mujeres_psoe = 20;
+Q.mujeres_pce = 5;
+Q.mujeres_prr = 0;
+Q.mujeres_irl = 10;
+Q.mujeres_anarquistas = 20;
+
+
+Q.catolicos_ceda = 5;
+Q.catolicos_falange = 0;
+Q.catolicos_psoe = 0;
+Q.catolicos_pce = 0;
+Q.catolicos_prr = 15;
+Q.catolicos_irl = 5;
+Q.catolicos_anarquistas = 0;
+
+
+Q.regionales_p = 0;
+Q.ceda_p = 0;
+Q.falange_p = 0;
+Q.psoe_p = 0;
+Q.pce_p = 0;
+Q.prr_p = 0;
+Q.irl_p = 0;
+Q.anarquistas_p = 0;
+
+
+//TDEL
 Q.spd_r = 26;
 Q.kpd_r = 9;
 Q.z_r = 17;
@@ -266,10 +354,19 @@ Q.ddp_r = 6;
 Q.dvp_r = 10;
 Q.dnvp_r = 20;
 Q.nsdap_r = 3;
-Q.other_r = 9;
 
 // State of the government
-Q.president = "Hindenburg";
+Q.president = "PSANCHE";
+Q.regionales_gobierno = 0;
+Q.ceda_gobierno = 0;
+Q.falange_gobierno = 0;
+Q.psoe_gobierno = 1;
+Q.pce_gobierno = 0;
+Q.prr_gobierno = 1;
+Q.irl_gobierno = 1;
+Q.anarquistas_gobierno = 0;
+
+//TDEL
 // starting chancellor: Wilhelm Marx
 Q.chancellor = "Marx";
 Q.chancellor_party = 'Z';
@@ -281,6 +378,8 @@ Q.dnvp_in_government = 1;
 Q.kpd_in_government = 0;
 Q.nsdap_in_government = 0;
 
+
+// TODO:
 // Weimar coalition = SPD + Z + DDP
 Q.in_weimar_coalition = 0;
 // Grand coalition = SPD + Z + BVP + DDP + DVP
@@ -294,6 +393,7 @@ Q.in_left_front = 0;
 Q.in_emergency_government = 0;
 Q.in_spd_majority = 0;
 Q.grand_coalition_failed = 0;
+
 
 // if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.
 Q.coalition_dissent = 0;
@@ -326,12 +426,24 @@ Q.finance_minister_party = 'Z';
 Q.agriculture_minister = 'Schiele';
 Q.agriculture_minister_party = 'DNVP';
 
+// ENDTODO
+
+
+
+// EVENTOS HAN PASADO?
+
+Q.sufragio_femenino = 0;
+Q.anarquistas_se_presentan = 0;
+//TODO
 // Events: what has occurred?
 Q.panzerkreuzer_seen = 0;
 Q.panzerkreuzer_funded = 0;
 Q.panzerkreuzer_failed = 0;
 Q.unemployment_insurance_seen = 0;
 Q.blutmai = 0;
+
+//TODO
+
 
 // have we reformed these institutions to be more democratic?
 Q.judicial_reform = 0;
@@ -365,12 +477,15 @@ Q.nationalize_budget = 4;
 // have there been any factory takeovers?
 Q.factory_takeovers = 0;
 
+//TODO
 // our conduct in the government, and the conduct of our coalition opponents.
 // did the SPD vote against the previous government in a vote of no confidence?
 Q.spd_no_confidence = 0;
 // was the last SPD government taken down in a vote of no confidence by right-wing coalition partners?
 Q.no_confidence_against_spd = 0;
 
+
+//TODO
 // Advisors/Leaders
 Q.n_advisors = 3;
 // timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
@@ -413,9 +528,9 @@ Q.n_elections = 0;
 Q.no_majority_elections = 0;
 // elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.
 Q.in_election = 1;
-Q.next_election_year = 1928;
-Q.next_election_month = 5;
-Q.next_election_time = 5;
+Q.next_election_year = 1931;
+Q.next_election_month = 6;
+Q.next_election_time = 3;
 // government affairs timers
 Q.agricultural_policy_timer = 0;
 Q.domestic_enemies_timer = 0;
@@ -480,17 +595,19 @@ Q.schumacher_advisor = 0; // Kurt Schumacher (post-1930)
 set-bg: img/map_2.jpg
 new-page: true
 
-> *"Such a general development cannot be attributed to the false tactics of any single party or to the mistakes of individual leaders. On the contrary, the conduct of individual leaders is determined largely by the sentiments of the people as a whole. It would be erroneous, however, to regard the sentiments of the moment as reflecting the natural make-up and character of the people. They are merely the consequence of the special circumstances which have brought about this profound degradation of the entire nation."*
 
- - Karl Kautsky, *Hitlerism and Social Democracy*, 1934
 
-This is a game of alternate history. While historical accuracy is a major concern, keep in mind that this is a *game*, and that any divergence from actual events will necessarily have to involve some element of make-believe. Nevertheless, please let the author know if there are any glaring mistakes.
+> *"...La República necesita de todas las colaboraciones, las mayores y las ínfimas, porque necesita —queráis o no— hacer las cosas bien, y para eso todos somos pocos"*
 
-For more information on the politics and government of the German Republic, see the "Library" page on the top left. If this is your first time playing the game, it is strongly recommended that you read at least some of this information.
+ - José Ortega y Gasset - Discurso en las Cortes Constituyentes. Estatuto de Cataluña del 13 de mayo de 1932
 
-- @1928_easy: Begin (easy difficulty)
-- @1928_main: Begin (normal difficulty)
-- @1928_hard: Begin (hard difficulty)
+Esta es una partida de historia alternativa. Aunque la exactitud histórica es una preocupación importante, ten en cuenta que esto es un juego, y que cualquier divergencia de los eventos reales necesariamente involucrará algún elemento de ficción. No obstante, por favor informa al autor si encuentras errores evidentes.
+
+Para más información sobre la política y el gobierno de la República Española, consulta la página de "Biblioteca" en la esquina superior izquierda. Si es la primera vez que juegas, se recomienda encarecidamente que leas al menos parte de esta información.
+
+- @1928_easy: Empezar (fácil)
+- @1928_main: Empezar (medio)
+- @1928_hard: Empezar (difícil)
 
 @1928_easy
 on-arrival: difficulty = -1; resources = 4; dues = 3; rb_strength = 2500; kpd_relation = 29; z_relation = 54; dvp_relation = 49;
@@ -505,10 +622,7 @@ audio: shuffle music/1928_1930/FruhlingsliedMendelssohn.mp3 music/1928_1930/AUF_
 new-page: true
 go-to: main
 
-= 1928
+= 1931
 
-It is a bright time for German democracy. After a period of struggle, inflation is finally under control, and the economy is expanding steadily. In foreign policy, we have reached agreements with the Western powers and the Soviet Union that might make genuine peace a reality. 
-
-Now, the task of Social Democracy is to prepare for the next election. The bourgeois-right government of Wilhelm Marx is unpopular, and we stand to gain. Perhaps the next government will have a socialist majority.
-
+La República blablablabla
 

@@ -1,0 +1,65 @@
+title: Campaña
+new-page: true
+on-arrival: month_actions += 1
+max-visits: 36
+is-card: true
+card-image: img/PSOE_antiguo.svg.png
+frequency: 100
+tags: asuntos_partido
+
+= Campaña
+
+Independientemente de si estamos en una campaña electoral o no, el partido siempre está tratando de ampliar su base de votantes. ¿En quién deberíamos centrar nuestros esfuerzos de campaña?
+
+- @workers: La clase trabajadora urbana, nuestra base de apoyo tradicional.
+- @new_middle: La "nueva clase media" de empleados gubernamentales y trabajadores de cuello blanco.
+- @old_middle: La "vieja clase media" de pequeños empresarios independientes y artesanos.
+- @rural: Trabajadores rurales y pequeños agricultores, quienes se han sentido descuidados por nosotros en el pasado.
+- @unemployed: Los desempleados.
+- @catholics: Católicos, quienes típicamente apoyan al Partido del Centro.
+- @root: No queremos o no podemos hacer campaña en este momento.
+- @easy_discard
+
+
+@workers
+subtitle: -1 recursos
+choose-if: recursos >= 1
+unavailable-subtitle: Recursos insuficientes.
+
+Hemos incrementado nuestra campaña entre los trabajadores. 
+
+@new_middle
+subtitle: -1 recursos
+choose-if: recursos >= 1
+unavailable-subtitle: Recursos insuficientes.
+
+Hemos incrementado nuestra campaña entre la nueva clase media. 
+
+@old_middle
+subtitle: -1 recursos
+choose-if: recursos >= 1
+unavailable-subtitle: Recursos insuficientes.
+
+Hemos incrementado nuestra campaña entre la vieja clase media. 
+
+@rural
+subtitle: -1 recursos
+choose-if: recursos >= 1
+unavailable-subtitle: Recursos insuficientes.
+
+Hemos incrementado nuestra campaña entre los agricultores. 
+
+@unemployed
+subtitle: -1 recursos
+choose-if: recursos >= 1
+unavailable-subtitle: Recursos insuficientes.
+
+Hemos incrementado nuestra campaña entre los desempleados. 
+
+@catholics
+subtitle: -1 recursos
+choose-if: recursos >= 1
+unavailable-subtitle: Recursos insuficientes.
+view-if: partido_pueblo == 1
+
+Hemos incrementado nuestra campaña entre los católicos.
