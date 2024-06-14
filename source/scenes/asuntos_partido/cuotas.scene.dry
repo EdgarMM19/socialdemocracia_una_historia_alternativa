@@ -1,0 +1,36 @@
+title: Cuota de partido
+new-page: true
+view-if: fundraising_timer <= 0
+on-arrival: fundraising_timer = 6; month_actions += 1
+frequency: 300
+is-card: true
+card-image: img/poster_2.jpg
+tags: party_affairs
+
+= Cuota de partido
+
+¿Qué deberíamos hacer con nuestra cuota?
+
+- @aumentar: Aumentar la cuota.
+- @mantener: Mantenerla al nivel actual.
+- @bajar: Bajar la cuota.
+
+@increase
+subtitle: ingresaremos [+ dues + 1 +] recursos. [? if dues >= 4 : La cuota ya es bastante alta; subirla puede ahuyentar a algunos miembros. ?]
+on-arrival: dues += 1; resources += dues; trabajadores_psoe -= 3; trabajadores_psoe -= 3*dues if dues >= 5;
+
+Algunos miembros deciden abandonar el partido, pero ahora contamos con más recursos.
+
+@mantener
+subtitle: ingresaremos [+ dues +] recursos.
+on-arrival: resources += dues;
+
+Hemos decidido mantener la cuota.
+
+@bajar
+subtitle: ingresaremos [+ dues - 1 +] recursos.
+choose-if: dues > 1
+on-arrival: dues -= 1; resources += dues; disidencia_centristas -= 8; disidencia_sindicalistas -= 8; trabajadores_psoe += 1;
+
+Nuestros miembros (y sus bolsillos) agradecen este cambio. 
+
