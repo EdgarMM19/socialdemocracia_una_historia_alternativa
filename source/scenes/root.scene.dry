@@ -211,10 +211,10 @@ Q.partido_presidente_republica = "irl";
 Q.regionales_gobierno = 0;
 Q.ceda_gobierno = 0;
 Q.falange_gobierno = 0;
-Q.psoe_gobierno = 1;
+Q.psoe_gobierno = 0;
 Q.pce_gobierno = 0;
-Q.prr_gobierno = 1;
-Q.irl_gobierno = 1;
+Q.prr_gobierno = 0;
+Q.irl_gobierno = 0;
 Q.anarquistas_gobierno = 0;
 
 Q.en_coalicion_de_izquierdas_regionalistas = 0;

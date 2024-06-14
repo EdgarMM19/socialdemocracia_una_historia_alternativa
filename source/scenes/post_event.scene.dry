@@ -1,6 +1,34 @@
 title: Post Event
 new-page: true
 on-arrival: {!
+// 1. update dates
+if (Q.month_actions >= 1) {
+    Q.time += 1;
+    Q.month_actions = 0;
+    Q.month += 1;
+    if (Q.month >= 13) {
+        Q.month = 1;
+        Q.year += 1;
+    }
+    // decrement timers
+    for (timer of Q.timers) {
+        if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {
+            Q[timer+'_timer'] -= 1;
+        }
+    }
+}
+Q.has_event = 0;
+// check if there are any cards in #event, and then go to main if not.
+var scene = this.game.scenes['post_event.events_choice'];
+var choices = this._compileChoices(scene);
+if (choices && choices[0].title != "Continue...") {
+    Q.has_event = 1;
+} else {
+    has_event = 0;
+}
+
+if (typeof window !== "undefined" && window.generateBar) {
+}
 // make sure no stat is below 0.
 for (var c of Q.classes) {
     for (var party of Q.parties) {
@@ -79,34 +107,6 @@ if (Q.dissent < 0) {
     Q.dissent = 0.95;
 }
 
-// 1. update dates
-if (Q.month_actions >= 1) {
-    Q.time += 1;
-    Q.month_actions = 0;
-    Q.month += 1;
-    if (Q.month >= 13) {
-        Q.month = 1;
-        Q.year += 1;
-    }
-    // decrement timers
-    for (timer of Q.timers) {
-        if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {
-            Q[timer+'_timer'] -= 1;
-        }
-    }
-}
-Q.has_event = 0;
-// check if there are any cards in #event, and then go to main if not.
-var scene = this.game.scenes['post_event.events_choice'];
-var choices = this._compileChoices(scene);
-if (choices && choices[0].title != "Continue...") {
-    Q.has_event = 1;
-} else {
-    has_event = 0;
-}
-
-if (typeof window !== "undefined" && window.generateBar) {
-}
 !}
 go-to: events_choice if has_event = 1; main if has_event = 0
 
@@ -119,5 +119,3 @@ go-to: events_choice if has_event = 1; main if has_event = 0
 # go-to: main
 
 # This scene is solely for updating numbers after events, and routing to special events.
-
-# TODO: don't have to do event dispatch here - we can just have a tag with a maximum number

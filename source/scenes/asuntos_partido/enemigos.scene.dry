@@ -1,6 +1,6 @@
 title: Elegir Enemigos
 new-page: true
-view-if: year <= 1930 and enemies_timer <= 0
+view-if: year <= 1935 and enemies_timer <= 0
 on-arrival: acciones_mensuales += 1; enemies_timer = 18
 max-visits: 3
 is-card: true
@@ -11,7 +11,7 @@ tags: asuntos_partido
 
 En nuestros medios y materiales de campaña, ¿a qué fuerzas políticas tendríamos que atacar con más ahínco?
 
-[? si enemies != 0 : Anteriormente, habíamos considerado a [+ enemies +] como el principal enemigo de nuestro partido. ¿Es necesario un cambio de rumbo? ?]
+[? if enemies != 0 : Anteriormente, habíamos considerado a [+ enemies +] como el principal enemigo de nuestro partido. ¿Es necesario un cambio de rumbo? ?]
 
 - @derecha: Los partidos de la derecha católica y monárquica.
 - @ultraderecha: Las formaciones fascistas y reaccionarias que conforman la ultraderecha.
@@ -36,7 +36,7 @@ on-arrival: enemies = "los nacionalistas periféricos"; regionales_relacion -= 1
 Atacar a los partidos nacionalistas periféricos complica la posibilidad de pactar con ellos en el futuro, pero el ejército y los partidos republicanos aplauden el gesto.
 
 @ultraizquierda
-on-arrival: enemies = "la extrema izquierda"; fuerza_centristas += 5; disidencia_centristas -= 8; fuerza_sindicalistas -=5; disidencia_sindicalistas; += 8; pce_relacion -= 15; cnt_relacion -= 15; irl_relacion += 5; trabajadores_pce -= 4; trabajadores_cnt -= 4;
+on-arrival: enemies = "la extrema izquierda";fuerza_centristas += 5; disidencia_centristas -= 8; fuerza_sindicalistas -=5;disidencia_sindicalistas += 8; pce_relacion -= 15; cnt_relacion -= 15; irl_relacion += 5; trabajadores_pce -= 4; trabajadores_cnt -= 4;
 
 Nuestros aliados progresistas y liberales aplauden este gesto, pero el ala más radical del partido preferiría ver un acercamiento a la CNT y el PCE. 
 
