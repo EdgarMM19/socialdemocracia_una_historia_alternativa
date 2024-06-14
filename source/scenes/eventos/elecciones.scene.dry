@@ -89,13 +89,13 @@ RdCD: [+ prr_p +]%
 
 RdI: [+ irl_p +]%
 
-[? anarquistas_se_presentan == 0 : Un [+ abstencion_anarquista +]% de la población son anarquistas y no han votado. ?]
+Un [+ abstencion_anarquista +]% de la población son anarquistas y no han votado. TODO: frente popular
 
 **Posibles coaliciones:**
 
-Izquierda con nacionalistas (PSOE + PCE + ERC + PNB + PRR + IRL): [+ coalicion_izquierda_y_regionalistas +]%
+Izquierda con regionalistas (PSOE + PCE + ERC + PNB + PRR + IRL): [+ coalicion_izquierda_y_regionalistas +] %
 
-There are some potential coalition arrangements.
+Hay algunos gobiernos posibles:
 
 @coalition_menu
 
@@ -103,13 +103,11 @@ There are some potential coalition arrangements.
 - @coalicion_1931
 
 
-
-
 @mayoria_psoe
 title: Mayoría del PSOE
 subtitle: PSOE: [+ psoe_p +]%
 view-if: psoe_p >= 50
-on-arrival: Q.mayoria_del_psoe = 1;Q.toleramos_el_gobierno = 1;Q.partido_jefe_gobierno = 'psoe';Q.partido_ministro_estado = 'psoe';Q.partido_ministro_gobernacion = 'psoe';Q.partido_ministro_justicia = 'psoe';Q.partido_ministro_trabajo = 'psoe';Q.partido_ministro_guerra = 'psoe';Q.partido_ministro_economia = 'regionalistas';Q.partido_ministro_agricultura = 'psoe';Q.partido_ministro_educacion = 'psoe';Q.psoe_gobierno = 1;
+on-arrival: mayoria_del_psoe = 1;partido_jefe_gobierno = 'psoe';partido_ministro_estado = 'psoe';partido_ministro_gobernacion = 'psoe';partido_ministro_justicia = 'psoe';partido_ministro_trabajo = 'psoe';partido_ministro_guerra = 'psoe';partido_ministro_economia = 'regionalistas';partido_ministro_agricultura = 'psoe';partido_ministro_educacion = 'psoe';psoe_gobierno = 1;
 achievement: majority_party
 
 Podemos gobernar en solitario!
@@ -119,8 +117,8 @@ Podemos gobernar en solitario!
 title: Coalición republicana izquierdista!
 subtitle: PSOE + PCE + ERC + PNB + PRR + IRL ([+ coalicion_izquierda_y_regionalistas +]%)
 view-if: coalicion_izquierda_y_regionalistas >= 50
-choose-if: irl_relation > 40
-on-arrival: Q.toleramos_el_gobierno = 1;Q.partido_jefe_gobierno = 'irl_p';Q.partido_ministro_estado = 'prr_p';Q.partido_ministro_gobernacion = 'prr_p';Q.partido_ministro_justicia = 'irl_p';Q.partido_ministro_trabajo = 'irl_p';Q.partido_ministro_guerra = 'prr_p';Q.partido_ministro_economia = 'regionalistas';Q.partido_ministro_agricultura = 'irl_p';Q.partido_ministro_educacion = 'prr_p';Q.psoe_gobierno = 1;Q.en_coalicion_de_izquierdas_regionalistas=1;Q.regionales_gobierno = 0;Q.prr_gobierno = 0;Q.irl_gobierno = 0;
+choose-if: irl_relacion > 40
+on-arrival: partido_jefe_gobierno = 'irl';partido_ministro_estado = 'prr';partido_ministro_gobernacion = 'prr';partido_ministro_justicia = 'irl';partido_ministro_trabajo = 'irl';partido_ministro_guerra = 'prr';partido_ministro_economia = 'regionalistas';partido_ministro_agricultura = 'irl';partido_ministro_educacion = 'prr';psoe_gobierno = 1;en_coalicion_de_izquierdas_regionalistas=1;regionales_gobierno = 0;prr_gobierno = 0;irl_gobierno = 0;
 unavailable-subtitle: No es posible la coalición.
 
 Esta coalición trabajará por la república y los trabajadores!
@@ -135,29 +133,6 @@ Podemos elegir que ministerios controlar. Si controlamos un ministerio podemos t
 - #drop_mins
 
 
-Q.ministro_estado = 'Nadie';
-Q.partido_ministro_estado = 'NONE';
-
-Q.ministro_gobernacion = 'Nadie';
-Q.partido_ministro_gobernacion = 'NONE';
-
-Q.ministro_justicia = 'Nadie';
-Q.partido_ministro_justicia = 'NONE';
-
-Q.ministro_trabajo = 'Nadie';
-Q.partido_ministro_trabajo = 'NONE';
-
-Q.ministro_guerra = 'Nadie';
-Q.partido_ministro_guerra = 'NONE';
-Q.ministro_economia = 'Nadie';
-Q.partido_ministro_economia = 'NONE';
-
-Q.ministro_agricultura = 'Nadie';
-Q.partido_ministro_agricultura = 'NONE';
-
-Q.ministro_educacion = 'Nadie';
-Q.partido_ministro_educacion = 'NONE';
-
 @presidentegob
 title: Presidente del Gobierno
 subtitle: Controlar la presidencia del Gobierno nos someterá a muchas presiones.
@@ -165,10 +140,10 @@ unavailable-subtitle: No tenemos suficiente fuerza negociadora.
 tags: mins
 choose-if: leverage >= 15
 view-if: partido_jefe_gobierno != "psoe"
-on-arrival: leverage -= 15; partido_jefe_gobierno = "psoe"; presidente_gobierno = "TODO"
+on-arrival: leverage -= 15; partido_jefe_gobierno = "psoe"; jefe_gobierno = "TODO"
 go-to: ministries
 
-NOSE será presidente del gobierno
+NOSE será presidente del gobierno.
 
 
 @estadogob
@@ -177,73 +152,176 @@ subtitle: El ministro de estado controla las relaciones internacionales.
 unavailable-subtitle: No tenemos suficiente fuerza negociadora.
 tags: mins
 choose-if: leverage >= 5
-view-if: partido_jefe_gobierno != "psoe"
+view-if: partido_ministro_estado != "psoe"
 on-arrival: leverage -= 5; partido_ministro_estado = "psoe"; ministro_estado = "TODO"
 go-to: ministries
 
-NOSE será presidente del gobierno
+NOSE será ministro de estado.
+
+@gobgob
+title: Ministro de gobernación
+subtitle: El ministro de gobernación controla las fuerzas del orden.
+unavailable-subtitle: No tenemos suficiente fuerza negociadora.
+tags: mins
+choose-if: leverage >= 5
+view-if: partido_ministro_gobernacion != "psoe"
+on-arrival: leverage -= 5; partido_ministro_gobernacion = "psoe"; ministro_gobernacion = "TODO"
+go-to: ministries
+
+NOSE será ministro de gobernación.
 
 
+@jusgob
+title: Ministro de justicia
+subtitle: Se espera que asumamos ese rol.
+unavailable-subtitle: No tenemos suficiente fuerza negociadora.
+tags: mins
+choose-if: leverage >= 5
+view-if: partido_ministro_justicia != "psoe"
+on-arrival: leverage -= 5; partido_ministro_justicia = "psoe"; ministro_justicia = "TODO"
+go-to: ministries
+
+NOSE será ministro de justicia.
+
+
+@trabgob
+title: Ministro de trabajo
+subtitle: Se espera que asumamos ese rol.
+unavailable-subtitle: No tenemos suficiente fuerza negociadora.
+tags: mins
+choose-if: leverage >= 5
+view-if: partido_ministro_trabajo != "psoe"
+on-arrival: leverage -= 5; partido_ministro_trabajo = "psoe"; ministro_trabajo = "TODO"
+go-to: ministries
+
+NOSE será ministro de trabajo.
+
+
+@guerragob
+title: Ministro de guerra
+subtitle: La reforma de las fuerzas armadas será una tarea ardua.
+unavailable-subtitle: No tenemos suficiente fuerza negociadora.
+tags: mins
+choose-if: leverage >= 10
+view-if: partido_ministro_guerra != "psoe"
+on-arrival: leverage -= 10; partido_ministro_guerra = "psoe"; ministro_guerra = "TODO"
+go-to: ministries
+
+NOSE será ministro de guerra.
+
+
+@econgob
+title: Ministro de economia
+subtitle: TODO
+unavailable-subtitle: No tenemos suficiente fuerza negociadora.
+tags: mins
+choose-if: leverage >= 10
+view-if: partido_ministro_economia != "psoe"
+on-arrival: leverage -= 10; partido_ministro_economia = "psoe"; ministro_economia = "TODO"
+go-to: ministries
+
+NOSE será ministro de economia.
+
+
+@agricgob
+title: Ministro de agricultura
+subtitle: Garantizar una vida digna a los jornaleros es básico para la supervivencia de la República.
+unavailable-subtitle: No tenemos suficiente fuerza negociadora.
+tags: mins
+choose-if: leverage >= 5
+view-if: partido_ministro_agricultura != "psoe"
+on-arrival: leverage -= 5; partido_ministro_agricultura = "psoe"; ministro_agricultura = "TODO"
+go-to: ministries
+
+NOSE será ministro de agricultura.
+
+
+@educagob
+title: Ministro de educación
+subtitle: La relación con la iglesia y sus escuelas será un tema importante.
+unavailable-subtitle: No tenemos suficiente fuerza negociadora.
+tags: mins
+choose-if: leverage >= 5
+view-if: partido_ministro_educacion != "psoe"
+on-arrival: leverage -= 5; partido_ministro_educacion = "psoe"; ministro_educacion = "TODO"
+go-to: ministries
+
+NOSE será ministro de educación.
 
 @no_more
-title: No more ministries.
-subtitle: [? if leverage >= 10 : We still have some more leverage to gain ministries. ?][? if leverage < 10 : We do not have much leverage left. ?]
+title: Ya tenemos suficientes.
+subtitle: [? if leverage >= 10 : Todavía podemos negociar un poco más. ?][? if leverage < 10 : No nos queda más fuerza negociadora. ?]
 tags: mins
 
-This coalition arrangement is tolerable to all.
+La coalición satisface a todos.
 
-@drop_labor
-title: Drop the Labor Ministry.
-view-if: labor_minister_party = "SPD"
-on-arrival: labor_minister_party = "Z"; labor_minister = "Stegerwald"; leverage += 5;
+
+@drop_presidentegob
+title: Renunciar a Presidente del Gobierno
 tags: drop_mins
+view-if: partido_jefe_gobierno == "psoe"
+on-arrival: leverage += 15; partido_jefe_gobierno = "irl"; presidente_gobierno = "TODO"
 go-to: ministries
 
-@drop_interior
-title: Drop the Interior Ministry.
-view-if: interior_minister_party = "SPD"
-on-arrival: interior_minister_party = "Z"; interior_minister = "Wirth"; leverage += 5;
+
+@drop_estadogob
+title: Renunciar a Ministro de estado
 tags: drop_mins
+view-if: partido_ministro_estado == "psoe"
+on-arrival: leverage += 5; partido_ministro_estado = "prr"; ministro_estado = "TODO"
 go-to: ministries
 
-@drop_finance
-title: Drop the Finance Ministry.
-view-if: finance_minister_party = "SPD"
-on-arrival: finance_minister_party = "DVP"; finance_minister = "Moldenhauer"; leverage += 10; finance_minister_party = "DDP" if in_weimar_coalition or in_popular_front;
+@drop_gobgob
+title: Renunciar a Ministro de gobernación
 tags: drop_mins
+view-if: partido_ministro_gobernacion == "psoe"
+on-arrival: leverage += 5; partido_ministro_gobernacion = "prr"; ministro_gobernacion = "TODO"
 go-to: ministries
 
-@drop_economic
-title: Drop the Economic Ministry.
-view-if: economic_minister_party = "SPD"
-on-arrival: economic_minister_party = "DVP"; economic_minister = "Curtius"; leverage += 10; economic_minister_party = "Z" if in_weimar_coalition or in_popular_front;
+
+@drop_jusgob
+title: Renunciar a Ministro de justicia
 tags: drop_mins
+view-if: partido_ministro_justicia == "psoe"
+on-arrival: leverage += 5; partido_ministro_justicia = "irl"; ministro_justicia = "TODO"
 go-to: ministries
 
-@drop_justice
-title: Drop the Justice Ministry.
-view-if: justice_minister_party = "SPD"
-on-arrival: justice_minister_party = "DDP"; justice_minister = "Koch-Weser"; leverage += 10;
+
+@drop_trabgob
+title: Renunciar a Ministro de trabajo
 tags: drop_mins
+view-if: partido_ministro_trabajo == "psoe"
+on-arrival: leverage += 5; partido_ministro_trabajo = "irl"; ministro_trabajo = "TODO"
 go-to: ministries
 
-@drop_foreign
-title: Drop the Foreign Ministry.
-view-if: foreign_minister_party = "SPD"
-on-arrival: foreign_minister_party = "DVP"; foreign_minister = "Stresemann"; leverage += 10; foreign_minister_party = "Z" if in_weimar_coalition or in_popular_front;
+
+@drop_guerragob
+title: Renunciar a Ministro de guerra
 tags: drop_mins
+view-if: partido_ministro_guerra == "psoe"
+on-arrival: leverage += 10; partido_ministro_guerra = "prr"; ministro_guerra = "TODO"
 go-to: ministries
 
-@drop_agriculture
-title: Drop the Agriculture Ministry.
-view-if: agriculture_minister_party = "SPD"
-on-arrival: agriculture_minister_party = "DDP"; agriculture_minister = "Dietrich"; leverage += 10;
+
+@drop_econgob
+title: Renunciar a Ministro de economia
 tags: drop_mins
+view-if: partido_ministro_economia == "psoe"
+on-arrival: leverage += 10; partido_ministro_economia = "regionalistas"; ministro_economia = "TODO"
 go-to: ministries
 
-@drop_reichswehr
-title: Drop the Reichswehr Ministry.
-view-if: reichswehr_minister_party = "SPD"
-on-arrival: reichswehr_minister_party = "I"; reichswehr_minister = "Groener"; leverage += 15;
+
+@drop_agricgob
+title: Renunciar a Ministro de agricultura
 tags: drop_mins
+view-if: partido_ministro_agricultura == "psoe"
+on-arrival: leverage += 5; partido_ministro_agricultura = "irl"; ministro_agricultura = "TODO"
+go-to: ministries
+
+
+@drop_educagob
+title: Renunciar a Ministro de educación
+tags: drop_mins
+view-if: partido_ministro_educacion == "psoe"
+on-arrival: leverage += 5; partido_ministro_educacion = "prr"; ministro_educacion = "TODO"
 go-to: ministries

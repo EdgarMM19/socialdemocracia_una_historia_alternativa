@@ -5,7 +5,7 @@ on-arrival: fundraising_timer = 6; month_actions += 1
 frequency: 300
 is-card: true
 card-image: img/poster_2.jpg
-tags: party_affairs
+tags: asuntos_partido
 
 = Cuota de partido
 
@@ -15,7 +15,7 @@ tags: party_affairs
 - @mantener: Mantenerla al nivel actual.
 - @bajar: Bajar la cuota.
 
-@increase
+@aumentar
 subtitle: ingresaremos [+ dues + 1 +] recursos. [? if dues >= 4 : La cuota ya es bastante alta; subirla puede ahuyentar a algunos miembros. ?]
 on-arrival: dues += 1; resources += dues; trabajadores_psoe -= 3; trabajadores_psoe -= 3*dues if dues >= 5;
 
