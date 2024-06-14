@@ -312,6 +312,8 @@ Q.dvp_r = 10;
 Q.dnvp_r = 20;
 Q.nsdap_r = 3;
 
+
+
 // State of the government
 Q.president = "PSANCHE";
 Q.regionales_gobierno = 0;
