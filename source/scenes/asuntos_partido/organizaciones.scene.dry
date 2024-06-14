@@ -1,0 +1,50 @@
+title: Organizaciones
+new-page: true
+is-card: true
+tags: asuntos_partido
+view-if: party_organizations_timer <= 0
+on-arrival: month_actions += 1; party_organizations_timer = 6;
+card-image: img/Mann_der_Arbeit.jpg
+max-visits: 5
+
+= Party Organizations
+
+El partido es mucho más que nuestros diputados en el Congreso. ¿Cuáles de nuestras organizaciones deberíamos priorizar?
+
+- @newspapers: Dedicar más recursos a la prensa del partido.
+- @basindicalismo: Ampliar la base de la UGT, nuestro sindicato.
+- @militarizar: Preparar a nuestras juventudes para el combate.
+- @nothing: No hacer nada
+- @easy_discard
+
+@newspapers
+choose-if: resources > 0
+unavailable-subtitle: No tenemos suficientes recursos.
+subtitle: -1 recursos.
+on-arrival: resources -= 1; media_timer = 0;
+go-to: medios
+
+
+@basindicalismo
+choose-if: resources > 0
+unavailable-subtitle: No tenemos suficientes recursos.
+subtitle: -1 recursos
+on-arrival: resources -= 1; fuerza_sindicalistas +=5; disidencia_sindicalistas -= 8; jse_militancy += 3;
+
+Hemos dedicado más recursos a ampliar las filas de nuestro sindicato.
+
+
+@militarizar
+choose-if: resources > 0
+unavailable-subtitle: No tenemos suficientes recursos.
+subtitle: -1 recursos
+on-arrival: resources -= 1; jse_strength  += 100; jse_timer = 0; funded_jse += 1
+
+Hemos proporcionado más entrenamiento militar a nuestras juventudes.
+
+
+@nothing
+
+Ahora no toca dedicar fondos a estas cuestiones.
+
+- @return: Continue...
