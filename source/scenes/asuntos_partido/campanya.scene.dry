@@ -55,7 +55,7 @@ Hemos intentado ganar más apoyos entre los campesinos.
 @mujeres
 subtitle: -1 resources
 choose-if: resources >= 1 
-view-if: sufragio femenino == 1
+view-if: sufragio_femenino == 1
 unavailable-subtitle: Recursos insuficientes.
 on-arrival: campesinos_psoe += 6; resources -= 1;
 

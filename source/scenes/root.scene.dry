@@ -13,7 +13,6 @@ go-to: start_menu_2
 @start_menu_2
 
 - @start: Empezar a jugar
-- @election_simulation: Simulador de elecciones
 - @credits: Creditos
 - @game_over.achievements
 
@@ -30,9 +29,6 @@ Q.month_actions = 0;
 
 // 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves
 Q.difficulty = 0;
-// old demographics
-// TDEL:
-Q.old_demographics = 0;
 
 // party resources
 Q.resources = 2;
@@ -45,68 +41,28 @@ Q.dissent = 0.05;
 Q.dissent_percent = 5;
 
 // factions
-Q.factions = ['centristas', 'sindicalistas', 'labor', 'reformist', 'neorevisionist'];
-Q.factions = ['left', 'center', 'labor', 'reformist', 'neorevisionist'];
-// should this be normalized to 100%?
-Q.fuerza_centrista = 70;
-Q.disidencia_centrista = 15;
-Q.fuerza_sindicalista = 30;
-Q.disidencia_sindicalista = 30;
-
-
-// TDEL:
-// secret events...
-Q.unions_independent = 0;
-Q.center_resigned = 0;
-Q.left_split = 0;
-Q.reformists_resigned = 0;
-
-// have we discovered neorevisionism?
-Q.neorevisionism = 0;
-
-
-
-// crisis_urgency indicates how seriously the SPD is taking the economic crisis - scale from 0 to 10.
-Q.crisis_urgency = 0;
-// support for nationalizations
-Q.nationalization_support = 0;
-Q.nationalization_adopted = 0;
-
-// organizations
-
+Q.facciones = ['centristas', 'sindicalistas'];
+Q.fuerza_centristas = 70;
+Q.disidencia_centristas = 15;
+Q.fuerza_sindicalistas = 30;
+Q.disidencia_sindicalistas = 30;
 
 
 // inter-party relations
-Q.regionales_relation = 70;
-Q.ceda_relation = 55;
-Q.falange_relation = 0;
-Q.pce_relation = 60;
-Q.prr_relation = 80;
-Q.irl_relation = 50;
-Q.anarquistas_relation = 35;
+Q.regionales_relacion = 70;
+Q.ceda_relacion = 55;
+Q.falange_relacion = 0;
+Q.pce_relacion = 60;
+Q.prr_relacion = 80;
+Q.irl_relacion = 50;
+Q.cnt_relacion = 35;
 
 Q.ceda_lider = "TODO";
 Q.pce_lider = "TODO";
 
-// TDEL:
-Q.kpd_leader = "Thälmann";
-Q.z_leader = "Brüning";
-
-// TDEL:
-// hmm... maybe we can play nice with Hindenburg???
-Q.hindenburg_relation = 25;
-
 
 Q.psoe_catalunya = 0;
 Q.gobierno_regionales = "PNB";
-
-
-//TDEL
-// Does the SPD lead in Prussia?
-Q.spd_prussia = 1;
-// Options: spd, z, dnvp, papen, nsdap
-Q.prussian_government = "SPD";
-
 
 
 // Numeros en miles de militantes
@@ -141,65 +97,21 @@ Q.jse_militancy = 30;
 Q.milicias_comunistas_strength = 1;
 Q.milicias_comunistas_militancy = 15;
 
-//TDEL:
-// The array of forces - paramilitary groups
-// Number of members in 1928 (in thousands)
-// Reichsbanner, stahlhelm, SA, rotfrontkämpferbund
-Q.rb_strength = 2000;
-Q.rb_militancy = 0.01;
-Q.women_in_rb = 0;
-Q.rb_banned = 0;
-Q.sh_strength = 500;
-Q.sh_militancy = 0.5;
-Q.sh_banned = 0;
-Q.sh_banned_prussia = 0;
-Q.sa_strength = 80;
-Q.sa_militancy = 0.5;
-Q.sa_banned = 0;
-Q.sa_banned_prussia = 0;
-Q.rfb_strength = 130;
-Q.rfb_militancy = 0.5;
-Q.rfb_banned = 0;
-Q.rfb_banned_prussia = 0;
-
-Q.interior_police_strength = 50;
-Q.interior_police_militancy = 1;
-Q.interior_police_loyalty = 0.45;
-
-Q.prussian_police_strength = 90;
-Q.prussian_police_militancy = 1;
-Q.prussian_police_loyalty = 0.5;
-
-// strength includes actual military and de facto reserves?
-Q.reichswehr_strength = 100;
-Q.reichswehr_militancy = 5;
-Q.reichswehr_loyalty = 0.2;
-//ENDTDEL
-
 
 // The state of the country
 
 // TODO: check real numbers
-// popular opinion
-// national ideology - on a binary scale
-// nationalism vs internationalism or pacifism or non-nationalism
 Q.nationalism = 60;
 // socialism vs capitalism
 Q.socialism = 40;
 // pro-republic vs anti-republic
-Q.pro_republic = 51;
+Q.pro_republic = 70;
 
-//TDEL:
-Q.emergency_rule = 0;
-
-// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.
-// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.
 Q.coup_progress = 0;
 Q.capital_strike_progress = 0;
 
 Q.budget = 5;
 
-//TODO: mirar real
 Q.trabajadores = 48;
 Q.campesinos = 35;
 Q.profliberales = 10;
@@ -217,21 +129,13 @@ Q.rural = 25;
 Q.unemployed = 8.6;
 Q.catholics = 30;
 
-// unemployment: 1929 - 13.3, 1930 - 22.7, 1931 - 34.3, 1932 - 43.8 (same source as above)
-
-// income for industrial workers in reichsmarks/year - 1928 = 1600 Reichsmarks/year; 1931 = 1440 Reichsmarks/year; 1933 = 1138 Reichsmarks/year - source: https://babel.hathitrust.org/cgi/pt?id=uiug.30112104147985&seq=50
 Q.income = 1600;
-// what about incomes for different classes? rural workers? middle-class workers?
 
-// inflation (in %; 1928: 2.9; 1929: 0; 1930: -5%; 1931: -10%; 1932: -10%) - source: https://en.wikipedia.org/wiki/File:BSPDRWeltkriseEngl.PNG, derived from https://www.destatis.de/DE/Methoden/WISTA-Wirtschaft-und-Statistik/2009/03/rezession-betrachtung-032009.pdf?__blob=publicationFile
 Q.inflation = 2.9;
 
 // standard of living (as % of 1928 - currently unused - should be welfare-adjusted.)
 Q.workers_sol = 100;
 Q.rural_sol = 100;
-
-// ENDTODO
-
 
 Q.clases = ["trabajadores", "campesinos", "profliberales", "burguesia", "mujeres", "catolicos"]
 Q.partidos = ["psoe", "ceda", "falange", "pce", "prr", "irl", "anarquistas"]
@@ -303,19 +207,9 @@ Q.irl_p = 0;
 Q.anarquistas_p = 0;
 
 
-//TDEL
-Q.spd_r = 26;
-Q.kpd_r = 9;
-Q.z_r = 17;
-Q.ddp_r = 6;
-Q.dvp_r = 10;
-Q.dnvp_r = 20;
-Q.nsdap_r = 3;
-
-
-
 // State of the government
-Q.president = "PSANCHE";
+Q.presidente_republica = "Alcalá-Zamora";
+Q.partido_presidente_republica = "irl";
 Q.regionales_gobierno = 0;
 Q.ceda_gobierno = 0;
 Q.falange_gobierno = 0;
@@ -325,130 +219,63 @@ Q.prr_gobierno = 1;
 Q.irl_gobierno = 1;
 Q.anarquistas_gobierno = 0;
 
-//TDEL
-// starting chancellor: Wilhelm Marx
-Q.chancellor = "Marx";
-Q.chancellor_party = 'Z';
-Q.spd_in_government = 0;
-Q.z_in_government = 1;
-Q.ddp_in_government = 0;
-Q.dvp_in_government = 1;
-Q.dnvp_in_government = 1;
-Q.kpd_in_government = 0;
-Q.nsdap_in_government = 0;
+Q.en_coalicion_de_izquierdas_regionalistas = 0;
+Q.mayoria_del_psoe = 0;
 
-
-// TODO:
-// Weimar coalition = SPD + Z + DDP
-Q.in_weimar_coalition = 0;
-// Grand coalition = SPD + Z + BVP + DDP + DVP
-// also includes the "new grand coalition" of SPD + Z + BVP + DDP + DVP + Others
-Q.in_grand_coalition = 0;
-// Popular front = SPD + KPD + Z + DDP
-Q.in_popular_front = 0;
-// left coalition = SPD + KPD + left-splinters
-Q.in_left_front = 0;
-// emergency government containing the SPD: only president Braun can do this.
-Q.in_emergency_government = 0;
-Q.in_spd_majority = 0;
-Q.grand_coalition_failed = 0;
-
-
-// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.
 Q.coalition_dissent = 0;
-// dissent from the KPD, in a popular front or left front government
-Q.kpd_coalition_dissent = 0;
+Q.toleramos_el_gobierno = 0;
 
-// does the SPD tolerate the government even if it is not a participant?
-Q.spd_toleration = 0;
+Q.gobierno_en_minoria = 0;
 
-// is the current government a presidential minority government?
-Q.minority_government = 0;
+Q.jefe_gobierno = 'Nadie';
+Q.partido_jefe_gobierno = 'NONE';
 
-// ministries - which parties control the ministries?
-// starting with the 4th Marx cabinet https://en.wikipedia.org/wiki/Fourth_Marx_cabinet
-// is the agricultural ministry useful at all?
-Q.foreign_minister = 'Streseman';
-Q.foreign_minister_party = 'DVP';
-Q.interior_minister = 'von Keudell';
-Q.interior_minister_party = 'DNVP';
-Q.justice_minister = 'Hergt';
-Q.justice_minister_party = 'DNVP';
-Q.labor_minister = 'Brauns';
-Q.labor_minister_party = 'Z';
-Q.reichswehr_minister = 'Groener';
-Q.reichswehr_minister_party = 'I';
-Q.economic_minister = 'Curtius';
-Q.economic_minister_party = 'DVP';
-Q.finance_minister = 'Köhler';
-Q.finance_minister_party = 'Z';
-Q.agriculture_minister = 'Schiele';
-Q.agriculture_minister_party = 'DNVP';
+Q.ministro_estado = 'Nadie';
+Q.partido_ministro_estado = 'NONE';
 
-// ENDTODO
+Q.ministro_gobernacion = 'Nadie';
+Q.partido_ministro_gobernacion = 'NONE';
 
+Q.ministro_justicia = 'Nadie';
+Q.partido_ministro_justicia = 'NONE';
+
+Q.ministro_trabajo = 'Nadie';
+Q.partido_ministro_trabajo = 'NONE';
+
+Q.ministro_guerra = 'Nadie';
+Q.partido_ministro_guerra = 'NONE';
+Q.ministro_economia = 'Nadie';
+Q.partido_ministro_economia = 'NONE';
+
+Q.ministro_agricultura = 'Nadie';
+Q.partido_ministro_agricultura = 'NONE';
+
+Q.ministro_educacion = 'Nadie';
+Q.partido_ministro_educacion = 'NONE';
 
 
 // EVENTOS HAN PASADO?
 
 Q.sufragio_femenino = 0;
 Q.anarquistas_se_presentan = 0;
-//TODO
-// Events: what has occurred?
-Q.panzerkreuzer_seen = 0;
-Q.panzerkreuzer_funded = 0;
-Q.panzerkreuzer_failed = 0;
-Q.unemployment_insurance_seen = 0;
-Q.blutmai = 0;
 
 //TODO
 
+Q.colectivizacion_tierras = 0;
+Q.socializacion_economia = 0;
+Q.socializacion_anarquista = 0;
+Q.colectivizacion_anarquista = 0;
 
-// have we reformed these institutions to be more democratic?
-Q.judicial_reform = 0;
-Q.bureaucratic_reform = 0;
-Q.military_reform = 0;
-Q.womens_rights = 0;
-// level of welfare relative to 1928 (can go negative)
-Q.welfare = 0;
-// level of support for farmers
-Q.agricultural_policy = 0;
-Q.land_reform = 0;
-// works-creation programs (i.e. WTB-plan) - how much have they implemented?
-Q.works_program = 0;
-Q.wtb_implemented = 0;
-// Relations with the Western countries (France, UK).
-Q.west_relation = 0;
-// Relations with the Eastern countries (Poland, Czechoslovakia)
-Q.east_relation = 0;
-// Relations with the Soviet Union
-Q.soviet_relation = 0;
-// How much have we exposed the secret rearmament programs?
-Q.rearmament_exposed = 0;
-// reparations vs baseline: young plan is -1.
-Q.reparations = 0;
-Q.reparations_negotiation = 0;
-// nationalization_progress is part of the left economic plan.
-Q.nationalization_progress = 0;
-// socializations is part of the economic democracy card.
-Q.socializations = 0;
-Q.nationalize_budget = 4;
-// have there been any factory takeovers?
-Q.factory_takeovers = 0;
 
-//TODO
-// our conduct in the government, and the conduct of our coalition opponents.
-// did the SPD vote against the previous government in a vote of no confidence?
-Q.spd_no_confidence = 0;
-// was the last SPD government taken down in a vote of no confidence by right-wing coalition partners?
-Q.no_confidence_against_spd = 0;
+Q.relaciones_occidente = 0;
+Q.relaciones_fascistas = 0;
+Q.relaciones_urss = 0;
+Q.relaciones_weimar = 0;
 
 
 //TODO
 // Advisors/Leaders
 Q.n_advisors = 3;
-// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
-// let's just put all of the timers here...
 // most party affairs and government affairs cards are on a timer.
 Q.timers = ['advisor_action', 'confronting_nazis', 'crisis_program',
             'fundraising', 'ideology',
@@ -515,41 +342,9 @@ Q.sa_ban_timer = 0;
 Q.sh_ban_timer = 0;
 Q.kpd_ultimatum_timer = 0;
 
+Q.enemies = 0;
 
-// all the initial advisors are centrists.
 Q.wels_advisor = 1; // Otto Wels
-Q.muller_advisor = 1; // Hermann Müller
-Q.muller_dead = 0;
-// okay I know Arthur Crispien was a leader irl but i couldn't find much interesting about him...
-Q.crispien_advisor = 0; // Arthur Crispien
-Q.hilferding_advisor = 1; // Rudolf Hilferding
-
-// left advisors
-Q.sender_advisor = 0; // Toni Sender
-Q.levi_advisor = 0; // Paul Levi
-Q.levi_dead = 0;
-Q.rosenfeld_advisor = 0; // Kurt Rosenfeld
-
-// centrist alternate advisors
-Q.pfulf_advisor = 0; // Antonie Pfülf
-Q.breitscheid_advisor = 0; // Rudolf Breitscheid
-
-// Reformist advisors
-Q.severing_advisor = 0; // Carl Severing
-Q.braun_advisor = 0; // Otto Braun
-Q.juchacz_advisor = 0; // Marie Juchacz
-Q.baade_advisor = 0; // Fritz Baade
-
-// Labor advisors
-Q.leipart_advisor = 0; // Theodor Leipart
-Q.aufhauser_advisor = 0; // Siegfried Aufhäuser
-Q.woytinsky_advisor = 0; // Wladimir Woytinsky (post-1930)
-
-// Revisionist advisors
-Q.mierendorff_advisor = 0; // Carlo Mierendorf (post-1930)
-
-Q.leber_advisor = 0; // Julius Leber (post-1930)
-Q.schumacher_advisor = 0; // Kurt Schumacher (post-1930)
 !}
 set-bg: img/map_2.jpg
 new-page: true
@@ -577,11 +372,10 @@ on-arrival: difficulty = 1; resources = 0; dues = 1; rb_strength = 1000; reformi
 go-to: 1928_main
 
 @1928_main
-audio: shuffle music/1928_1930/FruhlingsliedMendelssohn.mp3 music/1928_1930/AUF_HOHEN_BERGEN_noise_reduced.mp3 music/1928_1930/MarekWeber.mp3 music/1928_1930/BAUERNKAPELLE.mp3 music/1928_1933/DERLINDENBAUM_normalized.mp3 music/1928_1933/ZurSonne_zurFreiheit.mp3 music/1928_1933/arbeiter_marseille.mp3 music/1928_1933/Wann_wir_schreiten_Seit_an_Seit.mp3 music/1930_1933/Internationale-de_normalized.ogg
+audio: shuffle music/1 music/2
 new-page: true
 go-to: main
 
 = 1931
 
 La República blablablabla
-

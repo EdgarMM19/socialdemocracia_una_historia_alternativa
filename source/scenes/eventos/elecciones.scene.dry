@@ -1,0 +1,297 @@
+title: Elecciones parlamentarias
+new-page: true
+tags: event
+view-if: year >= next_election_year and month >= next_election_month
+on-departure: month_actions += 1; in_election = 0; next_election_year = next_election_year + 4; n_elections += 1; next_election_time = time + 48;
+set-jump: post_elecciones
+
+= Elections, [+ month : month +] [+ year +]
+
+Elecciones!
+
+- @algoritmo_elecciones: A ver si hay suerte...
+
+@post_elecciones
+on-arrival: {!
+
+Q.regionales_p = Q.regionales_votes;
+Q.ceda_p = Q.ceda_votes;
+Q.falange_p = Q.falange_votes;
+Q.psoe_p = Q.psoe_votes;
+Q.pce_p = Q.pce_votes;
+Q.prr_p = Q.prr_votes;
+Q.irl_p = Q.irl_votes;
+Q.anarquistas_p = Q.anarquistas_votes;
+
+Q.largest_party = 'CEDA';
+if (Q.psoe_p >= Q.pce_p && Q.psoe_p >= Q.ceda_p) {
+    Q.largest_party = 'PSOE';
+}
+if (Q.pce_p >= Q.psoe_p && Q.pce_p >= Q.ceda_p) {
+    Q.largest_party = 'PCE';
+}
+
+// coalitions
+// VOTOS COALICIONES
+Q.coalicion_izquierda_y_regionalistas = Q.regionales_p + Q.psoe_p + Q.pce_p + Q.prr_p + Q.irl_p;
+Q.leverage = Q.psoe_p;
+
+// TODO:
+Q.regionales_gobierno = 0;
+Q.ceda_gobierno = 0;
+Q.falange_gobierno = 0;
+Q.psoe_gobierno = 0;
+Q.pce_gobierno = 0;
+Q.prr_gobierno = 0;
+Q.irl_gobierno = 0;
+Q.anarquistas_gobierno = 0;
+Q.en_coalicion_de_izquierdas_regionalistas = 0;
+Q.mayoria_del_psoe = 0;
+Q.coalition_dissent = 0;
+Q.toleramos_el_gobierno = 0;
+Q.gobierno_en_minoria = 0;
+Q.jefe_gobierno = 'Nadie';
+Q.partido_jefe_gobierno = 'irl';
+Q.ministro_estado = 'Nadie';
+Q.partido_ministro_estado = 'irl';
+Q.ministro_gobernacion = 'Nadie';
+Q.partido_ministro_gobernacion = 'irl';
+Q.ministro_justicia = 'Nadie';
+Q.partido_ministro_justicia = 'irl';
+Q.ministro_trabajo = 'Nadie';
+Q.partido_ministro_trabajo = 'irl';
+Q.ministro_guerra = 'Nadie';
+Q.partido_ministro_guerra = 'irl';
+Q.ministro_economia = 'Nadie';
+Q.partido_ministro_economia = 'irl';
+Q.ministro_agricultura = 'Nadie';
+Q.partido_ministro_agricultura = 'irl';
+Q.ministro_educacion = 'Nadie';
+Q.partido_ministro_educacion = 'irl';
+
+
+!}
+go-to: coalition_menu
+
+**Resultado elecciones:**
+
+PSOE: [+ psoe_p +]%
+
+ERC+PNB: [+ regionales_p +]%
+
+CEDA: [+ ceda_p +]%
+
+Falange: [+ falange_p +]%
+
+PCE: [+ pce_p +]%
+
+RdCD: [+ prr_p +]%
+
+RdI: [+ irl_p +]%
+
+[? anarquistas_se_presentan == 0 : Un [+ abstencion_anarquista +]% de la población son anarquistas y no han votado. ?]
+
+**Posibles coaliciones:**
+
+Izquierda con nacionalistas (PSOE + PCE + ERC + PNB + PRR + IRL): [+ coalicion_izquierda_y_regionalistas +]%
+
+There are some potential coalition arrangements.
+
+@coalition_menu
+
+- @mayoria_psoe
+- @coalicion_1931
+
+
+
+
+@mayoria_psoe
+title: Mayoría del PSOE
+subtitle: PSOE: [+ psoe_p +]%
+view-if: psoe_p >= 50
+on-arrival: chancellor_party = "SPD"; spd_in_government = 1; in_spd_majority = 1; pro_republic += 5; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.05; 
+achievement: majority_party
+
+Podemos gobernar en solitario!
+
+
+@coalicion_1931
+title: Coalición republicana izquierdista!
+subtitle: PSOE + PCE + ERC + PNB + PRR + IRL ([+ coalicion_izquierda_y_regionalistas +]%)
+view-if: coalicion_izquierda_y_regionalistas >= 50
+choose-if: irl_relation > 40
+unavailable-subtitle: No es posible la coalición
+
+Esta coalición trabajará por la república y los trabajadores!
+
+- @ministries: Tenemos que elegir nuestros ministerios.
+
+@ministries
+
+We can pick from any number of ministries. Controlling a ministry allows us to directly effect policy in that area. [? if in_left_front : Any ministry that we do not take will be given to the KPD. ?] [? if in_left_front and reichswehr_minister_party == "KPD" : If the KPD controls the Reichswehr Ministry, the army will most likely revolt. ?]
+
+- #mins_1928
+- #drop_mins_1928
+
+@labor
+title: Labor Ministry
+subtitle: Taking the Labor Ministry is expected of us.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_1928
+choose-if: leverage >= 5
+view-if: labor_minister_party != "SPD"
+on-arrival: leverage -= 5; labor_minister_party = "SPD"; labor_minister = "Wissell"
+go-to: ministries
+
+Rudolf Wissell of the SPD has been appointed labor minister.
+
+@interior
+title: Interior Ministry
+subtitle: Taking the Interior Ministry is expected of us. The Interior Ministry controls domestic security.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_1928
+choose-if: leverage >= 5
+view-if: interior_minister_party != "SPD"
+on-arrival: leverage -= 5; interior_minister_party = "SPD"; interior_minister = "Severing"
+go-to: ministries
+
+Carl Severing of the SPD has been appointed Interior Minister.
+
+@finance
+title: Finance Ministry
+subtitle: The Finance Ministry controls the government budget and taxes.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_1928
+choose-if: leverage >= 10 
+view-if: finance_minister_party != "SPD"
+on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
+go-to: ministries
+
+Rudolf Hilferding of the SPD has been appointed Finance Minister.
+
+@economic
+title: Economic Ministry
+subtitle: The Economic Ministry controls broader economic policy.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_1928
+choose-if: leverage >= 10 
+view-if: economic_minister_party != "SPD"
+on-arrival: leverage -= 10; economic_minister_party = "SPD"; economic_minister = "Schmidt"
+go-to: ministries
+
+Robert Schmidt of the SPD has been appointed Economic Minister.
+
+@justice
+title: Justice Ministry
+subtitle: The Justice Ministry controls the courts.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_1928
+choose-if: leverage >= 10 
+view-if: justice_minister_party != "SPD"
+on-arrival: leverage -= 10; justice_minister_party = "SPD"; justice_minister = "Radbruch"
+go-to: ministries
+
+Gustav Radbruch of the SPD has been appointed Justice Minister.
+
+@foreign
+title: Foreign Ministry
+subtitle: This is usually the domain of Gustav Stresemann of the DVP.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_1928
+choose-if: leverage >= 10 
+view-if: foreign_minister_party != "SPD"
+on-arrival: leverage -= 10; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"
+go-to: ministries
+
+Rudolf Breitscheid of the SPD has been appointed Foreign Minister.
+
+# TODO: do we even need the agricultural ministry? Temporarily removing this.
+
+@agriculture
+title: Agricultural Ministry
+subtitle: This is not our usual domain.
+unavailable-subtitle: We do not have enough leverage.
+choose-if: leverage >= 10 
+view-if: agriculture_minister_party != "SPD"
+on-arrival: leverage -= 10; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"
+go-to: ministries
+tags: mins_1928
+
+Fritz Baade of the SPD has been appointed Agriculture Minister.
+
+@reichswehr
+title: Reichswehr Ministry
+subtitle: The Ministry responsible for the armed forces is not typically our domain; General Groener and the bourgeois-conservatives will be displeased.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_1928
+choose-if: leverage >= 15 
+view-if: reichswehr_minister_party != "SPD"
+on-arrival: leverage -= 15; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"
+go-to: ministries
+
+Julius Leber of the SPD has been appointed Reichswehr Minister.
+
+
+
+@no_more
+title: No more ministries.
+subtitle: [? if leverage >= 10 : We still have some more leverage to gain ministries. ?][? if leverage < 10 : We do not have much leverage left. ?]
+tags: mins_1928
+
+This coalition arrangement is tolerable to all.
+
+@drop_labor
+title: Drop the Labor Ministry.
+view-if: labor_minister_party = "SPD"
+on-arrival: labor_minister_party = "Z"; labor_minister = "Stegerwald"; leverage += 5;
+tags: drop_mins_1928
+go-to: ministries
+
+@drop_interior
+title: Drop the Interior Ministry.
+view-if: interior_minister_party = "SPD"
+on-arrival: interior_minister_party = "Z"; interior_minister = "Wirth"; leverage += 5;
+tags: drop_mins_1928
+go-to: ministries
+
+@drop_finance
+title: Drop the Finance Ministry.
+view-if: finance_minister_party = "SPD"
+on-arrival: finance_minister_party = "DVP"; finance_minister = "Moldenhauer"; leverage += 10; finance_minister_party = "DDP" if in_weimar_coalition or in_popular_front;
+tags: drop_mins_1928
+go-to: ministries
+
+@drop_economic
+title: Drop the Economic Ministry.
+view-if: economic_minister_party = "SPD"
+on-arrival: economic_minister_party = "DVP"; economic_minister = "Curtius"; leverage += 10; economic_minister_party = "Z" if in_weimar_coalition or in_popular_front;
+tags: drop_mins_1928
+go-to: ministries
+
+@drop_justice
+title: Drop the Justice Ministry.
+view-if: justice_minister_party = "SPD"
+on-arrival: justice_minister_party = "DDP"; justice_minister = "Koch-Weser"; leverage += 10;
+tags: drop_mins_1928
+go-to: ministries
+
+@drop_foreign
+title: Drop the Foreign Ministry.
+view-if: foreign_minister_party = "SPD"
+on-arrival: foreign_minister_party = "DVP"; foreign_minister = "Stresemann"; leverage += 10; foreign_minister_party = "Z" if in_weimar_coalition or in_popular_front;
+tags: drop_mins_1928
+go-to: ministries
+
+@drop_agriculture
+title: Drop the Agriculture Ministry.
+view-if: agriculture_minister_party = "SPD"
+on-arrival: agriculture_minister_party = "DDP"; agriculture_minister = "Dietrich"; leverage += 10;
+tags: drop_mins_1928
+go-to: ministries
+
+@drop_reichswehr
+title: Drop the Reichswehr Ministry.
+view-if: reichswehr_minister_party = "SPD"
+on-arrival: reichswehr_minister_party = "I"; reichswehr_minister = "Groener"; leverage += 15;
+tags: drop_mins_1928
+go-to: ministries
