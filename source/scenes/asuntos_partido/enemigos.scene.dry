@@ -26,12 +26,12 @@ on-arrival: enemies = "la derecha"; trabajadores_ceda -= 2; profliberales_ceda -
 Atacar a la derecha es una opción de consenso en todas las facciones del PSOE, pero nuestros aliados liberales creen que deberíamos hacer más para combatir el auge de la extrema izquierda.
 
 @ultraderecha
-on-arrival: enemies = "la extrema derecha"; fuerza_centristas += 2; disidencia_centristas -= 5; disidencia_sindicalistas -= 3;  trabajadores_falange -= 3; irl_relacion -= 5;
+on-arrival: enemies = "la extrema derecha"; fuerza_centristas += 2; disidencia_centristas -= 5; disidencia_sindicalistas -= 3; trabajadores_falange -= 3; irl_relacion -= 5;
 
 Atacar a la extrema derecha es una opción sensata, aunque el ala radical del partido considera que los partidos de centro son igualmente peligrosos, mientras que nuestros aliados republicanos creen que deberíamos hacer más para combatir el auge de la extrema izquierda
 
 @naciones
-on-arrival: enemies = "los nacionalista periféricos"; regionales_relacion -= 15; irl_relacion += 5; prr_relacion += 15; ejercito_loyalty += 0.1; coup_progress -= 1;
+on-arrival: enemies = "los nacionalistas periféricos"; regionales_relacion -= 15; irl_relacion += 5; ejercito_loyalty += 0.1; coup_progress -= 1;
 
 Atacar a los partidos nacionalistas periféricos complica la posibilidad de pactar con ellos en el futuro, pero el ejército y los partidos republicanos aplauden el gesto.
 
