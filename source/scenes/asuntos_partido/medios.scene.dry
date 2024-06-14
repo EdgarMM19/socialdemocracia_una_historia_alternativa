@@ -51,7 +51,7 @@ Gracias a esta decisión, el PSOE es ahora un partido más unido.
 
 @barcelona
 title: ¿Y si abrimos una edición en Barcelona?
-subtitle: -1 resources
+subtitle: -1 recursos
 choose-if: resources >= 1
 unavailable-subtitle: No tenemos suficientes recursos.
 view-if: edibarna = 0
