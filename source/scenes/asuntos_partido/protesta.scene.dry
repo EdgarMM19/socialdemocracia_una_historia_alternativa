@@ -57,14 +57,15 @@ Es importante mostrar nuestra presencia en las calles, tanto para promover nuest
 - @revolucion: Por la revolución, el fin del capitalismo, y la llegada del socialismo.
 - @sindicatos: En defensa de los sindicatos y las conquistas laborales.
 - @democracia: En defensa de la República y su sistema democrático.
-- @feminismo: Por los derechos de las mujeres.
+- @feminismo1: Por los derechos de las mujeres.
+- @feminismo2: Por los derechos de las mujeres.
 - @agraria: Por la reforma agraria.
 - @demagogia: Por los temas que más preocupen a los ciudadanos, con tal de atraer a nuevos votantes.
 - @easy_discard
 
 
 @revolucion
-on-arrival: fuerza_centristas -= 3; disidencia_centristas += 6; fuerza_sindicalistas += 2; disidencia_sindicalistas -= 3; pce_relacion += 7; cnt_relacion += 5; irl_relacion -= 3;
+on-arrival: fuerza_centristas -= 3; disidencia_centristas += 6; fuerza_sindicalistas += 2; disidencia_sindicalistas -= 3; pce_relacion += 7; cnt_relacion += 5; irl_relacion -= 3; coup_progress += 1;
 
 El mensaje extremista preocupa a los centristas del PSOE y nuestros aliados republicanos, pero es bien recibido por los anarquistas y los comunistas.
 
@@ -79,6 +80,20 @@ La defensa del sindicalismo da alas a la facción más radical del partido.
 on-arrival: fuerza_centristas += 3; disidencia_centristas -= 6; fuerza_sindicalistas -= 3; disidencia_sindicalistas += 6; irl_relacion += 5; cnt_relacion -= 2; pce_relacion -= 1;
 
 La defensa de la democracia da alas a la facción más reformista del partido y tranquiliza a nuestros aliados en el Congreso, pero no gusta tanto a la CNT-FAI y el PCE.
+
+
+@feminismo1
+view-if: sufragio_femenino == 0;
+on-arrival: mujeres_psoe += 4*(1-disidencia);
+
+Las mujeres merecen el derecho a voto, y el PSOE luchará para lograr el sufragio femenino.
+
+
+@feminismo2
+view-if: sufragio_femenino == 1;
+on-arrival: mujeres_psoe += 4*(1-disidencia);
+
+Ahora que las mujeres han logrado el sufragio, es imprescindible seguir luchando por la igualdad en otras áreas.
 
 
 @agraria
