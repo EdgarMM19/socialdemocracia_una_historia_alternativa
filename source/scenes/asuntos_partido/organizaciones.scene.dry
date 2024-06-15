@@ -38,7 +38,7 @@ Hemos dedicado más recursos a ampliar las filas de nuestro sindicato.
 choose-if: resources > 0
 unavailable-subtitle: No tenemos suficientes recursos.
 subtitle: -1 recursos
-on-arrival: resources -= 1; jse_strength  += 100; jse_timer = 0; funded_jse += 1
+on-arrival: resources -= 1; jse_strength  += 100;
 
 Hemos proporcionado más entrenamiento militar a nuestras juventudes.
 
