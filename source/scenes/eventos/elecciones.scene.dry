@@ -234,7 +234,7 @@ view-if: partido_ministro_agricultura != "psoe"
 on-arrival: leverage -= 5; partido_ministro_agricultura = "psoe"; ministro_agricultura = "TODO"
 go-to: ministries
 
-Marcelino Domingo será Ministro de Agricultura.
+NOSE será Ministro de Agricultura.
 
 
 @educagob
