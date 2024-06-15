@@ -57,6 +57,6 @@ subtitle: -1 resources
 choose-if: resources >= 1 
 view-if: sufragio_femenino == 1
 unavailable-subtitle: Recursos insuficientes.
-on-arrival: campesinos_psoe += 6; resources -= 1;
+on-arrival: mujeres_psoe += 6; resources -= 1;
 
 Hemos intentado ganar más apoyos entre las mujeres, ahora que pueden votar.
