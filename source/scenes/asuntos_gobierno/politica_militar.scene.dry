@@ -1,0 +1,44 @@
+title: Política Militar
+new-page: true
+is-card: true
+tags: govt_affairs
+on-arrival: military_policy_timer = 6; month_actions += 1
+view-if: spd_in_government = 1 and reichswehr_minister_party = "SPD" and military_policy_timer = 0 //TODO
+card-image: img/portraits/LeberJulius.jpg
+
+= Política Militar
+
+El Ejército español es una institución reaccionaria y con una estructura que muchos consideran obsoleta. Ahora que controlamos el Ministerio de Guerra, tenemos la oportunidad de reformarlo. ¿Qué deberíamos hacer?
+
+- @invertir: Invertir en nuevas armas para ganarnos la simpatía de la cúpula del ejército.
+- @recortar: Recortar el presupuesto militar para poder invertir en otras áreas.
+- @pensiones: Ofrecer pensiones adelantadas a altos rangos para reducir la macrocefalia del ejército.
+- @root: No change to military policy.
+- @easy_discard
+
+
+@invertir
+subtitle: -1 presupuesto
+choose-if: budget >= 1
+unavailable-subtitle: El presupuesto no lo permite.
+on-arrival: budget -= 1; ejercito_loyalty += 0.1; ejercito_strength += 20; disidencia_sindicalistas += 5; burguesia_psoe += 3;
+
+Los militares se sorprenden ante esta acción, pero muchos miembros del partido están en desacuerdo con nuestra decisión.
+
+
+@recortar
+subtitle: +1 presupuesto
+unavailable-subtitle: Ya no podemos recortar más.
+choose-if: reichswehr_strength > 0
+on-arrival: budget += 1; ejercito_militancy -= 1; ejercito_strength -= 20; ejercito_loyalty -= 0.05; coup_progress += 2; burguesia_ceda += 10; burguesia_falange += 2;
+
+Hemos reducido los recursos del ejército. Los generales no se lo toman nada bien, y los partidos de derechas lo van a aprovechar... pero ahora tenemos más presupuesto para otras reformas.
+
+
+@pensiones
+subtitle: -1 presupuesto
+choose-if: budget >= 1
+unavailable-subtitle: El presupuesto no lo permite.
+on-arrival: ejercito_loyalty += 0.2; ejercito_militancy -= 1; budget -= 1; coup_progress += 1; burguesia_ceda += 5;
+
+Jubilar a la cúpula del ejército es una forma lenta pero efectiva de reformar la institución. Los partidos de derechas desconfían de nuestras intenciones, pero puede que así evitemos futuros golpes de Estado.
